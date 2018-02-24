@@ -1,0 +1,13 @@
+# Don't check auto-generated stuff into git
+node_modules
+logs
+
+# Cruft
+*.
+*.swp
+*.bak
+*.~ml
+*.orig
+.DS_Store
+npm-debug.*
+.idea

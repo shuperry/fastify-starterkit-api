@@ -1,0 +1,94 @@
+{
+  "name": "fastify-starterkit-api",
+  "version": "1.0.0",
+  "description": "Backend as a service(BaaS) platform v1.0.",
+  "author": "Shu Perry <cn.shperry@gmail.com>",
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shuperry/fastify-starterkit-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shuperry/fastify-starterkit-api.git/issues"
+  },
+  "homepage": "https://github.com/shuperry/fastify-starterkit-api.git#readme",
+  "scripts": {
+    "start": "pm2 start process.config.js --only fastify-starterkit-api-local",
+    "dev": "pm2 start process.config.js --only fastify-starterkit-api-dev",
+    "prod": "pm2 start process.config.js --only fastify-starterkit-api",
+    "prod_cluster": "pm2 start process.config.js --only fastify-starterkit-api-cluster"
+  },
+  "keywords": [
+    "fastify",
+    "sequelize",
+    "pino",
+    "redis",
+    "pm2"
+  ],
+  "files": [
+    "src"
+  ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "dependencies": {
+    "ajv": "^6.0.1",
+    "async": "2.3.0",
+    "base64-img": "^1.0.3",
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.1",
+    "continuation-local-storage": "^3.2.1",
+    "core-decorators": "^0.20.0",
+    "cors": "^2.8.4",
+    "debug": "^3.1.0",
+    "deep-diff": "^0.3.8",
+    "dns-prefetch-control": "^0.1.0",
+    "download": "^6.2.5",
+    "email-address": "^1.2.2",
+    "fastify": "^0.40.0",
+    "fastify-formbody": "^1.2.3",
+    "fastify-plugin": "^0.2.1",
+    "fastify-response-time": "^1.0.4",
+    "filesize": "^3.5.11",
+    "filewatcher": "^3.0.1",
+    "frameguard": "^3.0.0",
+    "fs-plus": "^3.0.1",
+    "hide-powered-by": "^1.0.0",
+    "hsts": "^2.1.0",
+    "ienoopen": "^1.0.0",
+    "ioredis": "^3.2.2",
+    "ip": "^1.1.5",
+    "jsonwebtoken": "^8.1.1",
+    "lodash": "^4.17.4",
+    "lodash-decorators": "^3.0.2",
+    "md5": "^2.2.1",
+    "mime-types": "^2.1.17",
+    "moment": "^2.20.1",
+    "multer": "^1.3.0",
+    "mysql2": "^1.5.1",
+    "nconf": "^0.10.0",
+    "node-schedule": "^1.3.0",
+    "nodemailer": "^4.4.2",
+    "pino": "^4.10.4",
+    "querystring": "^0.2.0",
+    "request": "^2.83.0",
+    "sequelize": "^4.32.2",
+    "sequelize-hierarchy": "^1.3.2",
+    "string": "^3.3.3",
+    "urlencode": "^1.1.0",
+    "uuid": "^3.2.1",
+    "validate.io-absolute-time": "^1.0.3",
+    "validate.io-timestamp": "^1.0.2",
+    "x-xss-protection": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-runtime": "^6.26.0"
+  }
+}
