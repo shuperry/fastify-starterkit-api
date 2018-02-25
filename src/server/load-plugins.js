@@ -6,6 +6,7 @@ export default (fastify) => {
     'redis',
     'sequelize',
     'nodemailer',
+    'compress',
     // 'mongodb',
     // 'static-server'
   ]

@@ -1,3 +1,6 @@
+import fs from 'fs'
+import path from 'path'
+
 import _ from 'lodash'
 import multer from 'multer'
 
@@ -37,6 +40,19 @@ export default (fastify, opts, next) => {
     return {
       flag: 'success'
     }
+  })
+
+  fastify.get('/send-files', {
+    schema: {
+      // request needs to have a querystring with a `name` parameter.
+      querystring: {
+        name: { type: 'string' }
+      }
+    }
+  }, async (request, reply) => {
+    reply
+      // .type('text/plain')
+      .compress(fs.createReadStream(path.join(config.get('appPath'), 'package.json')))
   })
 
   fastify.route({

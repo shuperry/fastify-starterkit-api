@@ -3,6 +3,7 @@ module.exports = (fastify) => {
     logger.info('into onRequest hook')
 
     fastify.server.req = req
+    fastify.server.res = res
 
     next()
   })

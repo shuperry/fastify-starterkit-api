@@ -68,6 +68,9 @@ export default {
         times: 3,
         interval: 50
       }
+    },
+    compress: {
+      global: false
     }
   },
   page: {

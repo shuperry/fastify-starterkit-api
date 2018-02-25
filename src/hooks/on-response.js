@@ -4,8 +4,6 @@ module.exports = (fastify) => {
   fastify.addHook('onResponse', (res, next) => {
     logger.info('into onResponse hook')
 
-    fastify.server.res = res
-
     // TODO 此处可对请求返回内容做统一处理.
 
     const request = fastify.server.request
