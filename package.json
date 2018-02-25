@@ -46,6 +46,7 @@
     "download": "^6.2.5",
     "email-address": "^1.2.2",
     "fastify": "^0.40.0",
+    "fastify-accepts": "^0.5.0",
     "fastify-compress": "^0.4.0",
     "fastify-formbody": "^1.2.3",
     "fastify-plugin": "^0.2.1",

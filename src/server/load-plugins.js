@@ -1,5 +1,6 @@
 export default (fastify) => {
   const plugins = [
+    'accepts',
     'jwt',
     'response-time',
     'formbody',
