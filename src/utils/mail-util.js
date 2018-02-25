@@ -28,30 +28,30 @@ class MailUtil {
     const seriesJobs = []
     const successful = [], failed = [], wrong = []
 
-    const sendMailCoreFunc = async (reviver, retryCallback) => {
+    const sendMailCoreFunc = async (receiver, retryCallback) => {
       try {
         await this.transporter.sendMail({
           ...this.opts.options,
-          to: reviver,
+          to: receiver,
           subject,
           text: !!html ? '' : text,
           html,
           attachments
         })
 
-        logger.info('邮件发送成功 receiver =', reviver)
+        logger.info('邮件发送成功 receiver =', receiver)
 
-        successful.push(reviver)
+        successful.push(receiver)
 
         if (_.isFunction(retryCallback)) retryCallback(null)
       } catch (err) {
-        logger.error('邮件发送失败 receiver =', reviver, 'err =', err)
+        logger.error('邮件发送失败 receiver =', receiver, 'err =', err)
 
         if (_.isFunction(retryCallback)) retryCallback('failed.')
       }
     }
 
-    const generageSeriesJobs = (reviver) => {
+    const generageSeriesJobs = (receiver) => {
       if (this.opts.retry.enable) {
         seriesJobs.push(async (seriesCallback) => {
           await async.retryAsync({
@@ -61,18 +61,18 @@ class MailUtil {
               return !!err
             }
           }, async (retryCallback) => {
-            await sendMailCoreFunc(reviver, retryCallback)
+            await sendMailCoreFunc(receiver, retryCallback)
           }, (err) => {
             if (!!err) { // final failed after retry.
-              failed.push(reviver)
+              failed.push(receiver)
             }
 
-            if (_.isFunction(seriesCallback)) seriesCallback(null, reviver)
+            if (_.isFunction(seriesCallback)) seriesCallback(null, receiver)
           })
         })
       } else {
         seriesJobs.push(async () => {
-          await sendMailCoreFunc(reviver)
+          await sendMailCoreFunc(receiver)
         })
       }
     }
@@ -93,8 +93,8 @@ class MailUtil {
         generageSeriesJobs(filteredReceivers)
       }
     } else if (_.isString(receiver)) {
-      if (!emailValidator.isValid(reviverItem)) {
-        wrong.push(reviverItem)
+      if (!emailValidator.isValid(receiverItem)) {
+        wrong.push(receiverItem)
         return
       } else {
         generageSeriesJobs(receiver)
