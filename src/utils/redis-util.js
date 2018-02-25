@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 class RedisUtil {
   constructor(redisClient) {
     this.redisClient = redisClient
@@ -6,14 +8,14 @@ class RedisUtil {
 
   async set(keyPrefix = '', key, objVal) {
     if (this.redisClient) {
-      const res = await this.redisClient.set(this.app_key_prefix + keyPrefix + key, JSON.stringify(objVal))
+      const res = await this.redisClient.set(this.app_key_prefix + keyPrefix + _.toString(key), JSON.stringify(objVal))
       return res === 'OK' ? 'OK' : 'wrong'
     }
   }
 
   async store(keyPrefix = '', key, objVal) {
     if (this.redisClient) {
-      const res = await this.redisClient.set(this.app_key_prefix + keyPrefix + key, JSON.stringify(objVal))
+      const res = await this.redisClient.set(this.app_key_prefix + keyPrefix + _.toString(key), JSON.stringify(objVal))
       return res === 'OK' ? 'OK' : 'wrong'
     }
   }
@@ -22,9 +24,9 @@ class RedisUtil {
     if (this.redisClient) {
       let res
       try {
-        res = JSON.parse(await this.redisClient.get(this.app_key_prefix + keyPrefix + key))
+        res = JSON.parse(await this.redisClient.get(this.app_key_prefix + keyPrefix + _.toString(key)))
       } catch (e) {
-        res = await this.redisClient.get(this.app_key_prefix + keyPrefix + key)
+        res = await this.redisClient.get(this.app_key_prefix + keyPrefix + _.toString(key))
       }
       return res
     }
@@ -39,7 +41,7 @@ class RedisUtil {
       if (_.isArray(keys)) {
         keys.forEach(key => multiGetArr.push([
           'get',
-          this.app_key_prefix + keyPrefix + key
+          this.app_key_prefix + keyPrefix + _.toString(key)
         ]))
 
         const vals = await this.redisClient.pipeline(multiGetArr).exec()
@@ -60,7 +62,7 @@ class RedisUtil {
 
   async del(keyPrefix = '', key) {
     if (this.redisClient) {
-      const res = await this.redisClient.del(this.app_key_prefix + keyPrefix + key)
+      const res = await this.redisClient.del(this.app_key_prefix + keyPrefix + _.toString(key))
       return res === 0 ? 'OK' : 'wrong'
     }
   }
@@ -72,7 +74,7 @@ class RedisUtil {
       if (_.isArray(keys)) {
         keys.forEach(key => multiDelArr.push([
           'del',
-          this.app_key_prefix + keyPrefix + key
+          this.app_key_prefix + keyPrefix + _.toString(key)
         ]))
 
         await this.redisClient.pipeline(multiDelArr).exec()
