@@ -36,13 +36,14 @@ export default (fastify, opts, next) => {
 
         done()
       })
-    }
-  }, async (request, reply) => {
-    console.log('into upload file done with fastify.server.req.files =', JSON.stringify(fastify.server.req.files))
-    console.log('into upload file done with fastify.server.req.body =', fastify.server.req.body)
+    },
+    handler: async (request, reply) => {
+      console.log('into upload file done with fastify.server.req.files =', JSON.stringify(fastify.server.req.files))
+      console.log('into upload file done with fastify.server.req.body =', fastify.server.req.body)
 
-    return {
-      flag: 'success'
+      return {
+        flag: 'success'
+      }
     }
   })
 
@@ -55,17 +56,16 @@ export default (fastify, opts, next) => {
             type: 'string'
           }
         }
+      },
+      handler: async (request, reply) => {
+        reply
+        // .type('text/plain')
+          .compress(fs.createReadStream(path.join(config.get('appPath'), 'package.json')))
       }
     }
-  }, async (request, reply) => {
-    reply
-      // .type('text/plain')
-      .compress(fs.createReadStream(path.join(config.get('appPath'), 'package.json')))
   })
 
-  fastify.route({
-    method: 'GET',
-    url: '/categories',
+  fastify.get('/categories', {
     schema: {
       querystring: {
         type: 'object',
@@ -110,9 +110,7 @@ export default (fastify, opts, next) => {
     }
   })
 
-  fastify.route({
-    method: 'POST',
-    url: '/categories',
+  fastify.post('/categories', {
     schema: {
       body: {
         type: 'object',
@@ -130,11 +128,7 @@ export default (fastify, opts, next) => {
       }
     },
     handler: async (request, reply) => {
-      const {models} = fastify.sequelize
-
-      const category = await models.Category.create(request.body)
-
-      fastify.redis.store('category_', category.category_id, category)
+      const category = await categoryService.createCategory(fastify, request.body)
 
       return {
         result: category,
@@ -143,9 +137,7 @@ export default (fastify, opts, next) => {
     }
   })
 
-  fastify.route({
-    method: 'PATCH',
-    url: '/categories/:category_id',
+  fastify.patch('/categories/:category_id', {
     schema: {
       params: {
         type: 'object',
@@ -171,15 +163,9 @@ export default (fastify, opts, next) => {
       }
     },
     handler: async (request, reply) => {
-      const {models} = fastify.sequelize
+      const params = _.merge({}, request.params, request.body)
 
-      const existsCategory = await models.Category.find({
-        where: {
-          category_id: request.params.category_id
-        }
-      })
-
-      const category = await existsCategory.update(request.body)
+      const category = await categoryService.updateCategory(fastify, params)
 
       return {
         result: category,
@@ -188,9 +174,7 @@ export default (fastify, opts, next) => {
     }
   })
 
-  fastify.route({
-    method: 'GET',
-    url: '/categories/:category_id',
+  fastify.get('/categories/:category_id', {
     schema: {
       params: {
         type: 'object',
@@ -202,15 +186,9 @@ export default (fastify, opts, next) => {
       }
     },
     handler: async (request, reply) => {
-      const {models} = fastify.sequelize
+      const params = _.merge({}, request.params)
 
-      const category = await models.Category.find({
-        where: {
-          category_id: request.params.category_id
-        }
-      })
-
-      fastify.redis.store('category_', category.category_id, category)
+      const category = await categoryService.getCategoryById(fastify, params)
 
       return {
         result: category,
