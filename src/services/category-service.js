@@ -3,7 +3,10 @@ import {transaction} from '../decorators/service-decorator'
 import categoryHelper from '../helpers/category-helper'
 
 class CategoryService {
-  @transaction
+  constructor() {
+
+  }
+
   async getCategories(fastify, params) {
     return await categoryHelper.getCategories(fastify, params)
   }

@@ -13,9 +13,13 @@ const upload = multer({dest: config.get('upload_path')})
 export default (fastify, opts, next) => {
   fastify.post('/files', {
     schema: {
-      // request needs to have a querystring with a `name` parameter.
       querystring: {
-        name: { type: 'string' }
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string'
+          }
+        }
       }
     },
     beforeHandler(request, reply, done) { // 此函数只支持同步, 否则会出现提前进入 handler 函数的问题.
@@ -44,9 +48,13 @@ export default (fastify, opts, next) => {
 
   fastify.get('/send-files', {
     schema: {
-      // request needs to have a querystring with a `name` parameter.
       querystring: {
-        name: { type: 'string' }
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string'
+          }
+        }
       }
     }
   }, async (request, reply) => {
@@ -59,9 +67,14 @@ export default (fastify, opts, next) => {
     method: 'GET',
     url: '/categories',
     schema: {
-      // request needs to have a querystring with a `name` parameter.
       querystring: {
-        name: { type: 'string' }
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string'
+          }
+        },
+        // required: ['name']
       }
     },
     beforeHandler(request, reply, done) {
@@ -101,7 +114,6 @@ export default (fastify, opts, next) => {
     method: 'POST',
     url: '/categories',
     schema: {
-      // request needs to have a querystring with a `name` parameter.
       body: {
         type: 'object',
         properties: {

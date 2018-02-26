@@ -9,7 +9,8 @@ export default (fastify) => {
     'nodemailer',
     'compress',
     // 'mongodb',
-    // 'static-server'
+    // 'static-server',
+    // 'knexjs'
   ]
 
   plugins.forEach(pluginName => {
