@@ -83,10 +83,6 @@ export default (fastify, opts, next) => {
       done()
     },
     handler: async (request, reply) => {
-      const messages = {
-        notExists: `${moduleChName}不存在`
-      }
-
       // const sendMailResult = await fastify.nodemailer.sendMail({
       //   receiver: ['576507045@qq.com'],
       //   subject: 'Test sending email with nodeJS',
@@ -94,7 +90,13 @@ export default (fastify, opts, next) => {
       // })
       // logger.info('sendMailResult =', sendMailResult)
 
-      const result = await categoryService.getCategories(fastify, _.extend({}, request.params || {}, request.query || {}))
+      const params = _.extend({}, request.params || {}, request.query || {})
+
+      const result = await categoryService.getCategories(fastify, params)
+
+      const messages = {
+        notExists: `${moduleChName}不存在`
+      }
 
       if (_.isPlainObject(result) && result.flag === false) {
         return {
@@ -128,10 +130,12 @@ export default (fastify, opts, next) => {
       }
     },
     handler: async (request, reply) => {
-      const category = await categoryService.createCategory(fastify, request.body)
+      const params = _.extend({}, request.body || {})
+
+      const result = await categoryService.createCategory(fastify, params)
 
       return {
-        result: category,
+        result,
         error: null
       }
     }
@@ -163,13 +167,24 @@ export default (fastify, opts, next) => {
       }
     },
     handler: async (request, reply) => {
-      const params = _.merge({}, request.params, request.body)
+      const params = _.merge({}, request.params || {}, request.body || {})
 
-      const category = await categoryService.updateCategory(fastify, params)
+      const result = await categoryService.updateCategory(fastify, params)
 
-      return {
-        result: category,
-        error: null
+      const messages = {
+        notExists: `${moduleChName}不存在`
+      }
+
+      if (_.isPlainObject(result) && result.flag === false) {
+        return {
+          status: (result.status_code || 400),
+          error: (result.error_msg || messages[result.error_code])
+        }
+      } else {
+        return {
+          result,
+          error: null
+        }
       }
     }
   })
@@ -186,13 +201,24 @@ export default (fastify, opts, next) => {
       }
     },
     handler: async (request, reply) => {
-      const params = _.merge({}, request.params)
+      const params = _.merge({}, request.params || {})
 
-      const category = await categoryService.getCategoryById(fastify, params)
+      const result = await categoryService.getCategoryById(fastify, params)
 
-      return {
-        result: category,
-        error: null
+      const messages = {
+        notExists: `${moduleChName}不存在`
+      }
+
+      if (_.isPlainObject(result) && result.flag === false) {
+        return {
+          status: (result.status_code || 400),
+          error: (result.error_msg || messages[result.error_code])
+        }
+      } else {
+        return {
+          result,
+          error: null
+        }
       }
     }
   })
