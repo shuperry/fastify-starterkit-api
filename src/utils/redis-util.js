@@ -81,6 +81,12 @@ class RedisUtil {
       }
     }
   }
+
+  async flushdb() {
+    if (this.redisClient) {
+      await this.redisClient.flushdb()
+    }
+  }
 }
 
 export default RedisUtil

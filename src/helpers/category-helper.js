@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 class CategoryHelper {
-  async getCategories(fastify, {name, code, parent_id, category_id, keyText}) {
+  async getCategories(fastify, {keyText, name, code, parent_id, category_id}) {
     const {models} = fastify.sequelize
 
     let categories
@@ -142,7 +142,13 @@ class CategoryHelper {
     if (!_.isUndefined(category_id)) where['category_id'] = category_id
 
     return await models.Category.findAll({
-      where
+      where,
+      order: [
+        [
+          'updated_at',
+          'DESC'
+        ]
+      ]
     })
   }
 

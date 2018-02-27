@@ -118,11 +118,11 @@ module.exports = (fastify) => {
      logger.info('into preHandler hook with request.headers =', request.headers)
      */
 
-    logger.info('into preHandler hook')
-
     loggerForBeginVisitUrl({fastify, request})
 
     checkAuthority({fastify, request, reply})
+
+    fastify.server.request = request
 
     next()
   })

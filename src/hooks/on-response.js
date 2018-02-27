@@ -4,7 +4,7 @@ module.exports = (fastify) => {
   fastify.addHook('onResponse', (res, next) => {
     logger.info('into onResponse hook')
 
-    // TODO 此处可对请求返回内容做统一处理.
+    // TODO 此处可对请求响应内容做统一处理.
 
     const request = fastify.server.request
     const finishVisitTime = moment(moment(), 'YYYY-MM-DD HH:mm:ss SSS')

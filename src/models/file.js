@@ -77,12 +77,23 @@ export default (sequelize, DataTypes) => {
       }
     },
     hooks: {
-      beforeCreate: (instance) => {
+      beforeCreate(instance) {
         instance.created_at = Number(new Date())
         instance.updated_at = Number(new Date())
       },
-      beforeUpdate: (instance) => {
+      beforeUpdate(instance) {
         instance.updated_at = Number(new Date())
+      },
+      beforeBulkCreate(instances) {
+        instances.forEach(instance => {
+          instance.created_at = Number(new Date())
+          instance.updated_at = Number(new Date())
+        })
+      },
+      beforeBulkUpdate(instances) {
+        instances.forEach(instance => {
+          instance.updated_at = Number(new Date())
+        })
       }
     }
   })

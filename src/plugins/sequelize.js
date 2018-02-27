@@ -50,6 +50,8 @@ const operatorsAliases = {
 }
 
 const fastifyPlugin = async (fastify, opts, next) => {
+  logger.info('loading sequelize plugin with opts =', opts)
+
   const sequelize = new Sequelize(opts.database, opts.username, opts.password, _.extend(opts.options, {operatorsAliases}))
   const modelPath = path.join(config.get('appPath'), 'src', 'models')
 

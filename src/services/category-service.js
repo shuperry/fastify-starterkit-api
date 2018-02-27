@@ -2,6 +2,8 @@ import {transaction} from '../decorators/service-decorator'
 
 import categoryHelper from '../helpers/category-helper'
 
+import StoreGlobalDataUtil from '../utils/store-global-data-util'
+
 class CategoryService {
   constructor() {
 
@@ -13,7 +15,20 @@ class CategoryService {
 
   @transaction
   async createCategory(fastify, params) {
+    if (params.parent_id) {
+      const existingParentCategory = await categoryHelper.getCategoryById(fastify, {category_id: params.parent_id})
+
+      if (!existingParentCategory) {
+        return {
+          flag: false,
+          error_code: 'parentNotExists'
+        }
+      }
+    }
+
     const category = await categoryHelper.createCategory(fastify, params)
+
+    StoreGlobalDataUtil.storeGloabalCategories(fastify)
 
     fastify.redis.store('category_', category.category_id, category)
 
@@ -39,6 +54,17 @@ class CategoryService {
 
   @transaction
   async updateCategory(fastify, params) {
+    if (params.parent_id) {
+      const existingParentCategory = await categoryHelper.getCategoryById(fastify, {category_id: params.parent_id})
+
+      if (!existingParentCategory) {
+        return {
+          flag: false,
+          error_code: 'parentNotExists'
+        }
+      }
+    }
+
     const existingCategory = await categoryHelper.getCategoryById(fastify, params)
 
     if (!!existingCategory) {
@@ -47,6 +73,8 @@ class CategoryService {
         params,
         existingCategory
       )
+
+      StoreGlobalDataUtil.storeGloabalCategories(fastify)
 
       fastify.redis.store('category_', category.category_id, category)
 

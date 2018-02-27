@@ -4,6 +4,8 @@ import Redis from 'ioredis'
 import RedisUtil from '../utils/redis-util'
 
 const fastifyPlugin = (fastify, opts, next) => {
+  logger.info('loading redis plugin with opts =', opts)
+
   let client = null,
       redisUtil = null
 

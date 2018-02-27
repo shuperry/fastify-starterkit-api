@@ -6,6 +6,8 @@ import multer from 'multer'
 
 import categoryService from '../../services/category-service'
 
+import RouteUtil from '../../utils/route-util'
+
 const moduleChName = '通用类别'
 
 const upload = multer({dest: config.get('upload_path')})
@@ -22,21 +24,28 @@ export default (fastify, opts, next) => {
         }
       }
     },
-    beforeHandler(request, reply, done) { // 此函数只支持同步, 否则会出现提前进入 handler 函数的问题.
-      upload.fields([
-        {
-          name: 'files',
-          maxCount: config.get('files:maxUploadCount')
-        }
-      ])(fastify.server.req, fastify.server.res, err => {
-        if (err) {
-          logger.error('upload file with err =', err)
-          return
-        }
+    beforeHandler: [ // beforeHandler 函数只支持同步, 否则会出现提前进入 handler 函数的问题.
+      (request, reply, next) => { // 上传文件.
+        upload.fields([
+          {
+            name: 'files',
+            maxCount: config.get('files:maxUploadCount')
+          }
+        ])(fastify.server.req, fastify.server.res, err => {
+          if (err) {
+            logger.error('upload file with err =', err)
+            return
+          }
 
-        done()
-      })
-    },
+          next()
+        })
+      },
+      (request, reply, next) => { // 处理 multipart/form-data 表单中特殊的数据.
+        RouteUtil.dealSpecialMultipartFormdataRouteParam(fastify)
+
+        next()
+      }
+    ],
     handler: async (request, reply) => {
       console.log('into upload file done with fastify.server.req.files =', JSON.stringify(fastify.server.req.files))
       console.log('into upload file done with fastify.server.req.body =', fastify.server.req.body)
@@ -56,12 +65,12 @@ export default (fastify, opts, next) => {
             type: 'string'
           }
         }
-      },
-      handler: async (request, reply) => {
-        reply
-        // .type('text/plain')
-          .compress(fs.createReadStream(path.join(config.get('appPath'), 'package.json')))
       }
+    },
+    handler: async (request, reply) => {
+      reply
+      // .type('text/plain')
+        .compress(fs.createReadStream(path.join(config.get('appPath'), 'package.json')))
     }
   })
 
@@ -70,26 +79,31 @@ export default (fastify, opts, next) => {
       querystring: {
         type: 'object',
         properties: {
+          keyText: {
+            type: 'string'
+          },
           name: {
             type: 'string'
+          },
+          code: {
+            type: 'string'
+          },
+          parent_id: {
+            type: 'integer'
+          },
+          category_id: {
+            type: 'integer'
           }
         },
         // required: ['name']
       }
     },
-    beforeHandler(request, reply, done) {
+    beforeHandler(request, reply, next) {
       logger.info('into get categories route beforeHandler hook')
 
-      done()
+      next()
     },
     handler: async (request, reply) => {
-      // const sendMailResult = await fastify.nodemailer.sendMail({
-      //   receiver: ['576507045@qq.com'],
-      //   subject: 'Test sending email with nodeJS',
-      //   text: 'Hello! This is a test email sent with nodeJS.'
-      // })
-      // logger.info('sendMailResult =', sendMailResult)
-
       const params = _.extend({}, request.params || {}, request.query || {})
 
       const result = await categoryService.getCategories(fastify, params)
@@ -117,11 +131,8 @@ export default (fastify, opts, next) => {
       body: {
         type: 'object',
         properties: {
-          name: {
-            type: 'string'
-          },
           rank: {
-            type: 'string'
+            type: 'number'
           },
           parent_id: {
             type: 'integer'
@@ -134,9 +145,20 @@ export default (fastify, opts, next) => {
 
       const result = await categoryService.createCategory(fastify, params)
 
-      return {
-        result,
-        error: null
+      const messages = {
+        parentNotExists: `上级${moduleChName}不存在`
+      }
+
+      if (_.isPlainObject(result) && result.flag === false) {
+        return {
+          status: (result.status_code || 400),
+          error: (result.error_msg || messages[result.error_code])
+        }
+      } else {
+        return {
+          result,
+          error: null
+        }
       }
     }
   })
@@ -172,7 +194,8 @@ export default (fastify, opts, next) => {
       const result = await categoryService.updateCategory(fastify, params)
 
       const messages = {
-        notExists: `${moduleChName}不存在`
+        notExists: `${moduleChName}不存在`,
+        parentNotExists: `上级${moduleChName}不存在`
       }
 
       if (_.isPlainObject(result) && result.flag === false) {
