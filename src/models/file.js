@@ -48,11 +48,19 @@ export default (sequelize, DataTypes) => {
     },
     created_at: {
       type: DataTypes.DATE(6),
-      field: 'created_at'
+      field: 'created_at',
+      get: function () {
+        const dataVal = this.getDataValue('created_at')
+        return moment.isDate(dataVal) ? moment(dataVal).valueOf() : dataVal
+      }
     },
     updated_at: {
       type: DataTypes.DATE(6),
-      field: 'updated_at'
+      field: 'updated_at',
+      get: function () {
+        const dataVal = this.getDataValue('updated_at')
+        return moment.isDate(dataVal) ? moment(dataVal).valueOf() : dataVal
+      }
     }
   }, {
     timestamps: false,
@@ -66,33 +74,23 @@ export default (sequelize, DataTypes) => {
       throughKey: 'file_id',
       throughForeignKey: 'parent_file_id'
     },
-    getterMethods: {
-      created_at () {
-        const created_at = this.getDataValue('created_at')
-        return moment.isDate(created_at) ? moment(created_at).valueOf() : created_at
-      },
-      updated_at () {
-        const updated_at = this.getDataValue('updated_at')
-        return moment.isDate(updated_at) ? moment(updated_at).valueOf() : updated_at
-      }
-    },
     hooks: {
       beforeCreate(instance) {
-        instance.created_at = Number(new Date())
-        instance.updated_at = Number(new Date())
+        instance.created_at = new Date()
+        instance.updated_at = new Date()
       },
       beforeUpdate(instance) {
-        instance.updated_at = Number(new Date())
+        instance.updated_at = new Date()
       },
       beforeBulkCreate(instances) {
         instances.forEach(instance => {
-          instance.created_at = Number(new Date())
-          instance.updated_at = Number(new Date())
+          instance.created_at = new Date()
+          instance.updated_at = new Date()
         })
       },
       beforeBulkUpdate(instances) {
         instances.forEach(instance => {
-          instance.updated_at = Number(new Date())
+          instance.updated_at = new Date()
         })
       }
     }
