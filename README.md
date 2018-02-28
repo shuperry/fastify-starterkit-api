@@ -5,7 +5,7 @@
 * **[fastify](https://www.npmjs.com/package/fastify)**
 * **[es6](http://es6.ruanyifeng.com)**
 * **[nconf](https://www.npmjs.com/package/nconf)**
-* **[bunyan](https://www.npmjs.com/package/bunyan)**
+* **[pino](https://www.npmjs.com/package/pino)**
 * **[sequelize](http://docs.sequelizejs.com)**
 * **[sequelize-hierarchy](https://www.npmjs.com/package/sequelize-hierarchy)**
 * **[pm2](http://pm2.keymetrics.io/docs/usage/quick-start)**
@@ -17,7 +17,9 @@
 
 1. Clone this repo using `git clone https://github.com/shuperry/fastify-starterkit-api.git`.
 2. Run `npm install` or `yarn` to install dependencies.
-3. Run `npm start` to start service in local development mode.
+3. Run `npm i pm2 pino -g` to install global dependencies.
+4. Run `npm start` to start service in local development mode.
+5. Run `pm2 logs --raw fastify-starterkit-api-local | pino -L` to see logs in local development mode.
 
 ## Configuration
 
@@ -40,5 +42,5 @@ We use [nconf](https://www.npmjs.com/package/nconf) to manage configuration betw
 * **show log scripts:**
 
 ```bash
-pm2 logs --raw starterkit-api-dev | bunyan -L
+pm2 logs --raw fastify-starterkit-api-dev | pino -L
 ```
