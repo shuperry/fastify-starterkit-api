@@ -6,7 +6,7 @@ class RouteUtil {
 
   }
 
-  static dealSpecialMultipartFormdataRouteParam (fastify) {
+  static dealSpecialMultipartFormdataRouteParam(fastify) {
     let val
     _.keys(fastify.server.req.body).forEach(key => {
       val = fastify.server.req.body[key]
