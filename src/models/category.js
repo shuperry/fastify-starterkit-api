@@ -26,8 +26,7 @@ export default (sequelize, DataTypes) => {
       comment: '当前所处层级的排序.'
     },
     remark: {
-      type: DataTypes.STRING(4000),
-      defaultValue: '',
+      type: DataTypes.TEXT('long'),
       field: 'remark',
       comment: '备注.'
     },
