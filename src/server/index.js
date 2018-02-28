@@ -48,9 +48,9 @@ fastify.listen(port, '0.0.0.0', async (err) => {
     return
   }
 
+  logger.info(`You can also visit server at http://${ip.address()}:${port}`)
+
   await cacheStaticData(fastify)
 
   await testSth(fastify)
-
-  logger.info(`You can also visit server at http://${ip.address()}:${port}`)
 })

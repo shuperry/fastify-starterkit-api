@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 
 import _ from 'lodash'
+import Joi from 'joi'
 import multer from 'multer'
 
 import categoryService from '../../services/category-service'
@@ -13,6 +14,21 @@ const moduleChName = '通用类别'
 const upload = multer({dest: config.get('upload_path')})
 
 export default (fastify, opts, next) => {
+  fastify.get('/hello', {
+    schema: {
+      querystring: Joi.object().keys({
+        hello: Joi.string()
+      }).optional()
+    },
+    schemaCompiler: schema => data => Joi.validate(data, schema),
+    handler: async (request, reply) => {
+      return {
+        hello: 'hello world!',
+        error: 'has error'
+      }
+    }
+  })
+
   fastify.post('/files', {
     schema: {
       querystring: {
@@ -114,7 +130,7 @@ export default (fastify, opts, next) => {
 
       if (_.isPlainObject(result) && result.flag === false) {
         return {
-          status: (result.status_code || 400),
+          statusCode: (result.status_code || 400),
           error: (result.error_msg || messages[result.error_code])
         }
       } else {
@@ -151,7 +167,7 @@ export default (fastify, opts, next) => {
 
       if (_.isPlainObject(result) && result.flag === false) {
         return {
-          status: (result.status_code || 400),
+          statusCode: (result.status_code || 400),
           error: (result.error_msg || messages[result.error_code])
         }
       } else {
@@ -200,7 +216,7 @@ export default (fastify, opts, next) => {
 
       if (_.isPlainObject(result) && result.flag === false) {
         return {
-          status: (result.status_code || 400),
+          statusCode: (result.status_code || 400),
           error: (result.error_msg || messages[result.error_code])
         }
       } else {
@@ -234,7 +250,7 @@ export default (fastify, opts, next) => {
 
       if (_.isPlainObject(result) && result.flag === false) {
         return {
-          status: (result.status_code || 400),
+          statusCode: (result.status_code || 400),
           error: (result.error_msg || messages[result.error_code])
         }
       } else {
