@@ -10,6 +10,7 @@ class RouteUtil {
     let val
     _.keys(fastify.server.req.body).forEach(key => {
       val = fastify.server.req.body[key]
+
       if (validate.isJSON(val)) {
         fastify.server.req.body[key] = JSON.parse(val)
       }
@@ -19,7 +20,11 @@ class RouteUtil {
           if (_.isNumber(_.toNumber(val)) && !_.isNaN(_.toNumber(val))) {
             fastify.server.req.body[key] = _.toNumber(val)
           } else if (_.toLower(_.trim(val)) === 'undefined' || _.toLower(_.trim(val)) === 'null' || _.trim(val) === 'NaN') {
-            // delete un-normal value.
+            /**
+             * set un-normal value to null
+             *
+             * 1. 为支持部分字段从有值改为无值.
+             */
             fastify.server.req.body[key] = null
           } else {
             /**
