@@ -14,8 +14,6 @@ export default {
       }
     ]
   },
-  middleware: {
-  },
   plugin: {
     sequelize: {
       database: 'fastify-starterkit-api',

@@ -82,9 +82,7 @@
     "string": "^3.3.3",
     "urlencode": "^1.1.0",
     "uuid": "^3.2.1",
-    "validate.io-absolute-time": "^1.0.3",
-    "validate.io-json": "^1.0.0",
-    "validate.io-timestamp": "^1.0.2",
+    "validate.io": "^2.0.7",
     "x-xss-protection": "^1.0.0"
   },
   "devDependencies": {

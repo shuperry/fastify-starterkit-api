@@ -1056,6 +1056,14 @@ commander@~2.8.1:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
+compute-const-max-safe-integer@^1.0.0:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/compute-const-max-safe-integer/download/compute-const-max-safe-integer-1.0.1.tgz#0376145a5a8a1e3a8adc212064fab07b20724a6e"
+
+compute-const-min-safe-integer@^1.0.0:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/compute-const-min-safe-integer/download/compute-const-min-safe-integer-1.0.1.tgz#6d820edfb115fef838a1bbe88dd4da0d39a3fa4f"
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "http://registry.npm.taobao.org/concat-map/download/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -1078,6 +1086,14 @@ config-chain@^1.1.11:
 console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/console-control-strings/download/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
+
+const-max-uint32@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/const-max-uint32/download/const-max-uint32-1.0.2.tgz#f009bb6230e678ed874dd2d6a9cd9e3cbfabb676"
+
+const-pinf-float64@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/const-pinf-float64/download/const-pinf-float64-1.0.0.tgz#f6efb0d79f9c0986d3e79f2923abf9b70b63d726"
 
 content-disposition@^0.5.2:
   version "0.5.2"
@@ -2520,7 +2536,7 @@ object-assign@^4, object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1
   version "4.1.1"
   resolved "http://registry.npm.taobao.org/object-assign/download/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
 
-object-keys@^1.0.8:
+object-keys@^1.0.3, object-keys@^1.0.8, object-keys@^1.0.9:
   version "1.0.11"
   resolved "http://registry.npm.taobao.org/object-keys/download/object-keys-1.0.11.tgz#c54601778ad560f1142ce0e01bcca8b56d13426d"
 
@@ -2838,6 +2854,18 @@ regex-cache@^0.4.2:
   resolved "http://registry.npm.taobao.org/regex-cache/download/regex-cache-0.4.4.tgz#75bdc58a2a1496cec48a12835bc54c8d562336dd"
   dependencies:
     is-equal-shallow "^0.1.3"
+
+regex-color-hexadecimal@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/regex-color-hexadecimal/download/regex-color-hexadecimal-1.0.0.tgz#673aaf5a8cf7f71876fc53bdfc1274c2b592fa0e"
+
+regex-native-function@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/regex-native-function/download/regex-native-function-1.0.0.tgz#40c2f07091c0a0e145b4ef94e897ff67c8f12cf4"
+
+regex-regex@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/regex-regex/download/regex-regex-1.0.0.tgz#9048a1eaeb870f4d480dabc76fc42cdcc0bc3a72"
 
 regexpu-core@^2.0.0:
   version "2.0.0"
@@ -3258,6 +3286,14 @@ type-is@^1.6.4:
     media-typer "0.3.0"
     mime-types "~2.1.15"
 
+type-name@^1.0.1:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/type-name/download/type-name-1.1.0.tgz#ad9c3f7c330f5b2f08de7d79f56d2b9451e42b0e"
+
+type-name@^2.0.0:
+  version "2.0.2"
+  resolved "http://registry.npm.taobao.org/type-name/download/type-name-2.0.2.tgz#efe7d4123d8ac52afff7f40c7e4dec5266008fb4"
+
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "http://registry.npm.taobao.org/typedarray/download/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
@@ -3307,9 +3343,56 @@ util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/util-deprecate/download/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
+utils-copy-error@^1.0.0:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/utils-copy-error/download/utils-copy-error-1.0.1.tgz#791de393c0f09890afd59f3cbea635f079a94fa5"
+  dependencies:
+    object-keys "^1.0.9"
+    utils-copy "^1.1.0"
+
+utils-copy@^1.0.0, utils-copy@^1.1.0:
+  version "1.1.1"
+  resolved "http://registry.npm.taobao.org/utils-copy/download/utils-copy-1.1.1.tgz#6e2b97982aa8cd73e1182a3e6f8bec3c0f4058a7"
+  dependencies:
+    const-pinf-float64 "^1.0.0"
+    object-keys "^1.0.9"
+    type-name "^2.0.0"
+    utils-copy-error "^1.0.0"
+    utils-indexof "^1.0.0"
+    utils-regex-from-string "^1.0.0"
+    validate.io-array "^1.0.3"
+    validate.io-buffer "^1.0.1"
+    validate.io-nonnegative-integer "^1.0.0"
+
 utils-extend@^1.0.4, utils-extend@^1.0.6, utils-extend@^1.0.7:
   version "1.0.8"
   resolved "http://registry.npm.taobao.org/utils-extend/download/utils-extend-1.0.8.tgz#ccfd7b64540f8e90ee21eec57769d0651cab8a5f"
+
+utils-indexof@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/utils-indexof/download/utils-indexof-1.0.0.tgz#20feabf09ef1018b523643e8380e7bc83ec61b5c"
+  dependencies:
+    validate.io-array-like "^1.0.1"
+    validate.io-integer-primitive "^1.0.0"
+
+utils-merge2@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/utils-merge2/download/utils-merge2-1.0.0.tgz#6aceca075e6896499a609760142ed97590a0b3ba"
+  dependencies:
+    type-name "^1.0.1"
+    utils-copy "^1.0.0"
+    validate.io-boolean-primitive "^1.0.0"
+    validate.io-buffer "^1.0.0"
+    validate.io-function "^1.0.2"
+    validate.io-object "^1.0.3"
+    validate.io-positive-integer "^1.0.0"
+
+utils-regex-from-string@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/utils-regex-from-string/download/utils-regex-from-string-1.0.0.tgz#fe1a2909f8de0ff0d5182c80fbc654d6a687d189"
+  dependencies:
+    regex-regex "^1.0.0"
+    validate.io-string-primitive "^1.0.0"
 
 uuid@^3.0.0, uuid@^3.1.0, uuid@^3.2.1:
   version "3.2.1"
@@ -3327,15 +3410,507 @@ validate.io-absolute-time@^1.0.3:
   dependencies:
     validate.io-string "^1.0.1"
 
+validate.io-alphagram@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-alphagram/download/validate.io-alphagram-1.0.0.tgz#fd0432f327eec69356c1ec77964b82cc022ab5f2"
+  dependencies:
+    validate.io-string "^1.0.2"
+
+validate.io-alphanumeric-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-alphanumeric-array/download/validate.io-alphanumeric-array-1.0.0.tgz#d4759a2f51c0313abdef6bfb4089612993571ce4"
+  dependencies:
+    validate.io-alphanumeric "^1.0.0"
+    validate.io-array "^1.0.3"
+
+validate.io-alphanumeric@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-alphanumeric/download/validate.io-alphanumeric-1.0.0.tgz#b375325dde4248deeedece0503c767146ab4597a"
+  dependencies:
+    validate.io-string "^1.0.2"
+
+validate.io-anagram@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-anagram/download/validate.io-anagram-1.0.0.tgz#df4b10b90707292bb0b6a528ba8e0ce296bc874f"
+  dependencies:
+    validate.io-string "^1.0.2"
+
+validate.io-arguments@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-arguments/download/validate.io-arguments-1.0.0.tgz#48ebf9c6e46678de931a181c6fff7ed6cd8cdae6"
+
+validate.io-array-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-array-array/download/validate.io-array-array-1.0.0.tgz#f1eb267ba052c7d72b86d84ca29d7dcabefe6eea"
+  dependencies:
+    validate.io-array "^1.0.3"
+
+validate.io-array-like@^1.0.1:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-array-like/download/validate.io-array-like-1.0.2.tgz#7af9f7eb7b51715beb2215668ec5cce54faddb5a"
+  dependencies:
+    const-max-uint32 "^1.0.2"
+    validate.io-integer-primitive "^1.0.0"
+
+validate.io-array-max@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/validate.io-array-max/download/validate.io-array-max-1.0.1.tgz#706724611d8496fef3616efa4c1e8ad7cb1ca80d"
+  dependencies:
+    validate.io-array "^1.0.3"
+
+validate.io-array-min@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/validate.io-array-min/download/validate.io-array-min-1.0.1.tgz#f3f47bce957b9e45c0c9a10ba0311b863ad7276d"
+  dependencies:
+    validate.io-array "^1.0.3"
+
+validate.io-array@^1.0.1, validate.io-array@^1.0.3, validate.io-array@^1.0.5, validate.io-array@^1.0.6:
+  version "1.0.6"
+  resolved "http://registry.npm.taobao.org/validate.io-array/download/validate.io-array-1.0.6.tgz#5b5a2cafd8f8b85abb2f886ba153f2d93a27774d"
+
+validate.io-binary-string@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-binary-string/download/validate.io-binary-string-1.0.0.tgz#57f76967de55bd7d61fdbab46a65decd0605f21c"
+  dependencies:
+    validate.io-string-primitive "^1.0.0"
+
+validate.io-boolean-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-boolean-array/download/validate.io-boolean-array-1.0.0.tgz#ad2015507ed690eb99953bba3970a73bd9bfe06d"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-boolean "^1.0.4"
+
+validate.io-boolean-primitive-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-boolean-primitive-array/download/validate.io-boolean-primitive-array-1.0.0.tgz#1c87c7dc703251dee8c6dbeb7ddca6c93b6d0381"
+  dependencies:
+    validate.io-array "^1.0.3"
+
+validate.io-boolean-primitive@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-boolean-primitive/download/validate.io-boolean-primitive-1.0.0.tgz#bb14c9cb8683c3c9f3d1329a95a7768e3ee29eb5"
+
+validate.io-boolean@^1.0.4:
+  version "1.0.4"
+  resolved "http://registry.npm.taobao.org/validate.io-boolean/download/validate.io-boolean-1.0.4.tgz#d6b7ade1f862d629ee4480a32dfdebb8fa9510a3"
+
+validate.io-buffer@^1.0.0, validate.io-buffer@^1.0.1:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-buffer/download/validate.io-buffer-1.0.2.tgz#852d6734021914d5d13afc32531761e3720ed44e"
+
+validate.io-color-hexadecimal@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-color-hexadecimal/download/validate.io-color-hexadecimal-1.0.0.tgz#d642130fa8bb0c6297d0515e3cf7409fc60e7989"
+  dependencies:
+    regex-color-hexadecimal "^1.0.0"
+    validate.io-string-primitive "^1.0.0"
+
+validate.io-contains@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-contains/download/validate.io-contains-1.0.0.tgz#bf09ba4f27c642507b0905dbb3a74a5277089cfe"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-nan-primitive "^1.0.0"
+
+validate.io-email-address@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-email-address/download/validate.io-email-address-1.0.0.tgz#1e6da572dc5cce245712c6ee1e75647de4c774c4"
+  dependencies:
+    validate.io-string-primitive "^1.0.0"
+
+validate.io-empty@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-empty/download/validate.io-empty-1.0.2.tgz#18c532431cfcfbb7be388af25c7d93ba806e9a48"
+  dependencies:
+    object-keys "^1.0.3"
+    validate.io-array "^1.0.1"
+    validate.io-string "^1.0.1"
+
+validate.io-finite@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-finite/download/validate.io-finite-1.0.0.tgz#d8bc451d7f0732e5c7d459c48afb262eef1ab254"
+  dependencies:
+    validate.io-number "^1.0.3"
+
+validate.io-float32array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-float32array/download/validate.io-float32array-1.0.0.tgz#fcce8d113734d3c8a9c4a30db619222fb945dc0f"
+
+validate.io-float64array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-float64array/download/validate.io-float64array-1.0.0.tgz#e7ed31c1273b1b9a8ca4e237f9dbf9b2cde4d6f3"
+
+validate.io-float@^1.0.3:
+  version "1.0.3"
+  resolved "http://registry.npm.taobao.org/validate.io-float/download/validate.io-float-1.0.3.tgz#d341929eb3f6b3de69a0fac3f8e77bc3ef18620c"
+  dependencies:
+    validate.io-number "^1.0.1"
+
+validate.io-function-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-function-array/download/validate.io-function-array-1.0.0.tgz#47cb1fbb664eb17945abc93ee472a45ef107e576"
+  dependencies:
+    validate.io-array "^1.0.5"
+    validate.io-function "^1.0.2"
+
+validate.io-function@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-function/download/validate.io-function-1.0.2.tgz#343a19802ed3b1968269c780e558e93411c0bad7"
+
+validate.io-greater-than@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-greater-than/download/validate.io-greater-than-1.0.2.tgz#08c8fcf6b5af39cc16e29fc2db181fc400c2c6ca"
+  dependencies:
+    validate.io-number "^1.0.1"
+
+validate.io-int16array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-int16array/download/validate.io-int16array-1.0.0.tgz#b072f280b2b071e8c7b05a052521bcc63002196d"
+
+validate.io-int32array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-int32array/download/validate.io-int32array-1.0.0.tgz#7c354e26873cfb1b2deac3c5e8fb339ee94e9a46"
+
+validate.io-int8array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-int8array/download/validate.io-int8array-1.0.0.tgz#d5f305bcb193fcab68773b3ec1c99e265f5988d1"
+
+validate.io-integer-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-integer-array/download/validate.io-integer-array-1.0.0.tgz#2cabde033293a6bcbe063feafe91eaf46b13a089"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-integer "^1.0.4"
+
+validate.io-integer-primitive@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-integer-primitive/download/validate.io-integer-primitive-1.0.0.tgz#a9aa010355fe8681c0fea6c1a74ad2419cadddc6"
+  dependencies:
+    validate.io-number-primitive "^1.0.0"
+
+validate.io-integer@^1.0.3, validate.io-integer@^1.0.4, validate.io-integer@^1.0.5:
+  version "1.0.5"
+  resolved "http://registry.npm.taobao.org/validate.io-integer/download/validate.io-integer-1.0.5.tgz#168496480b95be2247ec443f2233de4f89878068"
+  dependencies:
+    validate.io-number "^1.0.3"
+
+validate.io-interval@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-interval/download/validate.io-interval-1.0.2.tgz#5c7bc0fa5e1e1cc7ea63a80178e1d901f7a9fb78"
+  dependencies:
+    validate.io-number "^1.0.1"
+
+validate.io-ip-address@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-ip-address/download/validate.io-ip-address-1.0.0.tgz#805be399df8926f31000a7196a74ceae5eb084ad"
+
 validate.io-json@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/validate.io-json/download/validate.io-json-1.0.0.tgz#cbd9b2e5b56245e0c8734be9acb6243263d6a9c5"
 
-validate.io-number@^1.0.2:
+validate.io-length@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-length/download/validate.io-length-1.0.2.tgz#926a89b395144a0451ac64783ea3f52362b6a411"
+  dependencies:
+    validate.io-array "^1.0.1"
+    validate.io-integer "^1.0.3"
+    validate.io-string "^1.0.1"
+
+validate.io-less-than@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-less-than/download/validate.io-less-than-1.0.2.tgz#ef7f329362238bfbf7996e1156a7326bc4a22cc4"
+  dependencies:
+    validate.io-number "^1.0.1"
+
+validate.io-logical-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-logical-array/download/validate.io-logical-array-1.0.0.tgz#7244086b57d6bda22ec38179b191ca3f4ee1838a"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-number "^1.0.3"
+
+validate.io-lowercase@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-lowercase/download/validate.io-lowercase-1.0.2.tgz#8f01e2dfc10a057a216a123c0d330c67a46ae9a7"
+  dependencies:
+    validate.io-string "^1.0.1"
+
+validate.io-matches@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-matches/download/validate.io-matches-1.0.2.tgz#83dd30fde03bcf88d04816988a16d976595a6c13"
+  dependencies:
+    validate.io-number "^1.0.1"
+    validate.io-string "^1.0.1"
+
+validate.io-matrix-like@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-matrix-like/download/validate.io-matrix-like-1.0.2.tgz#5ec32a75d0889dac736dea68bdd6145b155edfc3"
+
+validate.io-matrix@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-matrix/download/validate.io-matrix-1.0.0.tgz#640f7902df1daac5cbdbdbca002832e2800cfde2"
+  dependencies:
+    type-name "^1.0.1"
+
+validate.io-nan-primitive@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-nan-primitive/download/validate.io-nan-primitive-1.0.0.tgz#475cc2d035d0baf2d009122d83ea291a32d7fb0c"
+
+validate.io-nan@^1.0.3:
+  version "1.0.3"
+  resolved "http://registry.npm.taobao.org/validate.io-nan/download/validate.io-nan-1.0.3.tgz#d438e13868c9cbd37fdba12594de4d8fe14430a4"
+
+validate.io-native-function@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-native-function/download/validate.io-native-function-1.0.0.tgz#24b16fcf094418635402d864bd39f8b07345a1f8"
+  dependencies:
+    regex-native-function "^1.0.0"
+    validate.io-function "^1.0.2"
+
+validate.io-ndarray-like@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-ndarray-like/download/validate.io-ndarray-like-1.0.0.tgz#d8a3b0ed165bbf1d2fc0d0073270cfa552295919"
+
+validate.io-negative-integer-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-negative-integer-array/download/validate.io-negative-integer-array-1.0.0.tgz#5bbffcf7ac484c875ef33e408a8335f741e12c1d"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-negative-integer "^1.0.0"
+
+validate.io-negative-integer@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-negative-integer/download/validate.io-negative-integer-1.0.0.tgz#ed150db8638dada33dc885cf86b4650e28b6e8f1"
+  dependencies:
+    validate.io-integer "^1.0.5"
+
+validate.io-negative-zero@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-negative-zero/download/validate.io-negative-zero-1.0.0.tgz#14f2ed62d74685c4d2ffd33c35f9248d2aa558d0"
+
+validate.io-negative@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-negative/download/validate.io-negative-1.0.0.tgz#50f624be46b584d5aad10ead5ab1a20376e465c6"
+  dependencies:
+    validate.io-number "^1.0.3"
+
+validate.io-nonnegative-integer-array@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/validate.io-nonnegative-integer-array/download/validate.io-nonnegative-integer-array-1.0.1.tgz#66330a665f5598b96f25f69081f81f632ea4db4f"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-nonnegative-integer "^1.0.0"
+
+validate.io-nonnegative-integer@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-nonnegative-integer/download/validate.io-nonnegative-integer-1.0.0.tgz#8069243a08c5f98e95413c929dfd7b18f3f6f29f"
+  dependencies:
+    validate.io-integer "^1.0.5"
+
+validate.io-nonnegative@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-nonnegative/download/validate.io-nonnegative-1.0.0.tgz#021996bc5ddf5d97f7c40dff4b4335a49e8420cb"
+  dependencies:
+    validate.io-number "^1.0.3"
+
+validate.io-nonpositive-integer-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-nonpositive-integer-array/download/validate.io-nonpositive-integer-array-1.0.0.tgz#cde09ba542f6f4f15dcbf14e695b59cffdfef6ac"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-nonpositive-integer "^1.0.0"
+
+validate.io-nonpositive-integer@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-nonpositive-integer/download/validate.io-nonpositive-integer-1.0.0.tgz#9d1eb750d05d1cbeac279fb7af303eeb22e22080"
+  dependencies:
+    validate.io-integer "^1.0.5"
+
+validate.io-nonpositive@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-nonpositive/download/validate.io-nonpositive-1.0.0.tgz#d1a634c7f328a97361b66bf83547e5fe31364bf9"
+  dependencies:
+    validate.io-number "^1.0.3"
+
+validate.io-null@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-null/download/validate.io-null-1.0.2.tgz#562e92a31e04ef5101284722d3b8a1e35554cefb"
+
+validate.io-number-array-max@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/validate.io-number-array-max/download/validate.io-number-array-max-1.0.1.tgz#e45b580a318bd258dee681d607b77050bb535b00"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-number "^1.0.3"
+
+validate.io-number-array-min@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/validate.io-number-array-min/download/validate.io-number-array-min-1.0.1.tgz#457cdacccf15a89d254eb1266819799fabd20ae3"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-number "^1.0.3"
+
+validate.io-number-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-number-array/download/validate.io-number-array-1.0.0.tgz#e9057283b29d11bbd0db680468c25ce68ee3319f"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-number "^1.0.3"
+
+validate.io-number-primitive-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-number-primitive-array/download/validate.io-number-primitive-array-1.0.0.tgz#70644408c594d42f1fbbd65ac6b231631e869954"
+  dependencies:
+    validate.io-array "^1.0.3"
+
+validate.io-number-primitive@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-number-primitive/download/validate.io-number-primitive-1.0.0.tgz#d2e01f202989369dcf1155449564203afe584e55"
+
+validate.io-number@^1.0.1, validate.io-number@^1.0.2, validate.io-number@^1.0.3:
   version "1.0.3"
   resolved "http://registry.npm.taobao.org/validate.io-number/download/validate.io-number-1.0.3.tgz#f63ffeda248bf28a67a8d48e0e3b461a1665baf8"
 
-validate.io-string@^1.0.1:
+validate.io-object-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-object-array/download/validate.io-object-array-1.0.0.tgz#997af84851111af01ff5daddc01f94c87f0e5143"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-object "^1.0.3"
+
+validate.io-object@^1.0.2, validate.io-object@^1.0.3, validate.io-object@^1.0.4:
+  version "1.0.4"
+  resolved "http://registry.npm.taobao.org/validate.io-object/download/validate.io-object-1.0.4.tgz#dca01eceee390e110dbc2af843c81f7bf33a41ab"
+  dependencies:
+    validate.io-array "^1.0.1"
+
+validate.io-permutation@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-permutation/download/validate.io-permutation-1.0.0.tgz#d5bee5072d2b9b0d398e7f158946359834e638c0"
+  dependencies:
+    validate.io-array "^1.0.3"
+
+validate.io-positive-integer-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-positive-integer-array/download/validate.io-positive-integer-array-1.0.0.tgz#501628fe4d07e18fd663133d9a19fe20aed2d77d"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-positive-integer "^1.0.0"
+
+validate.io-positive-integer@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-positive-integer/download/validate.io-positive-integer-1.0.0.tgz#7ed2d03b4c27558cc66a00aab0f0e921814a6582"
+  dependencies:
+    validate.io-integer "^1.0.5"
+
+validate.io-positive-primitive@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-positive-primitive/download/validate.io-positive-primitive-1.0.0.tgz#bc6124416b1ea17edbf035a17669d00b185877c0"
+  dependencies:
+    validate.io-number-primitive "^1.0.0"
+
+validate.io-positive-zero@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-positive-zero/download/validate.io-positive-zero-1.0.0.tgz#ca0ede4b1d84dc82f6a5898c52070058219947f6"
+
+validate.io-positive@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-positive/download/validate.io-positive-1.0.0.tgz#d64f1f6b074f2d9c10a29b9345dcfc090e9063f8"
+  dependencies:
+    validate.io-number "^1.0.3"
+
+validate.io-primitive-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-primitive-array/download/validate.io-primitive-array-1.0.0.tgz#6315d934c22eee83518b145fb694c2b7d561c57f"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-primitive "^1.0.0"
+
+validate.io-primitive@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-primitive/download/validate.io-primitive-1.0.0.tgz#914bff0b0bfb053c5e7cc4be246bd5d939e9dc4b"
+
+validate.io-properties@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-properties/download/validate.io-properties-1.0.2.tgz#49a8be07be53f86c9dee66d7ee6bbb28eabad9e2"
+  dependencies:
+    validate.io-object "^1.0.2"
+
+validate.io-regexp@^1.0.3:
+  version "1.0.3"
+  resolved "http://registry.npm.taobao.org/validate.io-regexp/download/validate.io-regexp-1.0.3.tgz#65e433a15465e6c81b9a63fb2ad637feb078997c"
+
+validate.io-relative-time@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-relative-time/download/validate.io-relative-time-1.0.2.tgz#adaf703596e02cc99c201597c17f8a1e6375bbaa"
+  dependencies:
+    validate.io-string "^1.0.1"
+
+validate.io-safe-integer-array@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/validate.io-safe-integer-array/download/validate.io-safe-integer-array-1.0.1.tgz#41413493f4400ea4af3982a7a7fabf6b6b93c2bc"
+  dependencies:
+    validate.io-array "^1.0.5"
+    validate.io-safe-integer "^1.0.1"
+
+validate.io-safe-integer@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/validate.io-safe-integer/download/validate.io-safe-integer-1.0.1.tgz#e52356c1c0e7c66a1984fc28380fec96cb14b9a7"
+  dependencies:
+    compute-const-max-safe-integer "^1.0.0"
+    compute-const-min-safe-integer "^1.0.0"
+    validate.io-integer-primitive "^1.0.0"
+
+validate.io-size@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-size/download/validate.io-size-1.0.0.tgz#5b6b5d0a92d0ac82ff096c08688507f7f0c87b66"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-nonnegative-integer "^1.0.0"
+
+validate.io-square-matrix@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-square-matrix/download/validate.io-square-matrix-1.0.0.tgz#cf7332d8316cdac07f4a83ec0a94ca4348ea0249"
+  dependencies:
+    validate.io-array-array "^1.0.0"
+
+validate.io-strict-date-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-strict-date-array/download/validate.io-strict-date-array-1.0.0.tgz#a6a1cdf2031fe9e715bbeab815c9340428cb022f"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-strict-date "^1.0.2"
+
+validate.io-strict-date@^1.0.2, validate.io-strict-date@^1.0.3:
+  version "1.0.3"
+  resolved "http://registry.npm.taobao.org/validate.io-strict-date/download/validate.io-strict-date-1.0.3.tgz#d25dca9b7c001d434d641828c51eb3fbf1223d6a"
+
+validate.io-strict-properties@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-strict-properties/download/validate.io-strict-properties-1.0.2.tgz#23947252ab26123af0d3c8400b8ab227b48deb6b"
+  dependencies:
+    object-keys "^1.0.3"
+    validate.io-object "^1.0.2"
+
+validate.io-string-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-string-array/download/validate.io-string-array-1.0.0.tgz#e60e4801672d5659e3bc99a4d1044faf05a1dfa3"
+  dependencies:
+    validate.io-array "^1.0.3"
+    validate.io-string "^1.0.2"
+
+validate.io-string-primitive-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-string-primitive-array/download/validate.io-string-primitive-array-1.0.0.tgz#83c2a906ec2fa39ca74e647bb1c60ca9e51b1516"
+  dependencies:
+    validate.io-array "^1.0.3"
+
+validate.io-string-primitive@^1.0.0:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/validate.io-string-primitive/download/validate.io-string-primitive-1.0.1.tgz#b8135b9fb1372bde02fdd53ad1d0ccd6de798fee"
+
+validate.io-string@^1.0.1, validate.io-string@^1.0.2:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/validate.io-string/download/validate.io-string-1.0.2.tgz#babf3a528b28e4b9e8017e3281fc76001ae6dc2f"
 
@@ -3344,6 +3919,168 @@ validate.io-timestamp@^1.0.2:
   resolved "http://registry.npm.taobao.org/validate.io-timestamp/download/validate.io-timestamp-1.0.2.tgz#5a1c421431c69e627bc133a9d70f04c9544d72cc"
   dependencies:
     validate.io-number "^1.0.2"
+
+validate.io-typed-array-like@^1.0.0:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/validate.io-typed-array-like/download/validate.io-typed-array-like-1.0.1.tgz#bc9d08ed1d9bfa7bd9ec544c6ee3735a786df70a"
+  dependencies:
+    const-max-uint32 "^1.0.2"
+    validate.io-integer-primitive "^1.0.0"
+
+validate.io-typed-array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-typed-array/download/validate.io-typed-array-1.0.0.tgz#cac26b9a2812539fa11dd11e30338c16f1159f92"
+  dependencies:
+    type-name "^1.0.1"
+
+validate.io-uint16array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-uint16array/download/validate.io-uint16array-1.0.0.tgz#ce9466c8585053064f3e1681f0f977e506ab3470"
+
+validate.io-uint32array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-uint32array/download/validate.io-uint32array-1.0.0.tgz#b0ca47f207521378d3cb3a2da82e9194cd6aefce"
+
+validate.io-uint8array-clamped@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-uint8array-clamped/download/validate.io-uint8array-clamped-1.0.0.tgz#7bb16e35692c6761ffd40e5768c34c19e3265fc4"
+
+validate.io-uint8array@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-uint8array/download/validate.io-uint8array-1.0.0.tgz#008c26c8ad80f75c108962f67055d0089013af00"
+
+validate.io-undefined-or-null@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-undefined-or-null/download/validate.io-undefined-or-null-1.0.0.tgz#ed19519fab4a5d21c1864e8bf7f3feef4a90fbce"
+
+validate.io-undefined@^1.0.3:
+  version "1.0.3"
+  resolved "http://registry.npm.taobao.org/validate.io-undefined/download/validate.io-undefined-1.0.3.tgz#7e27fcbb315b841e78243431897671929e20b7f4"
+
+validate.io-unique@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-unique/download/validate.io-unique-1.0.0.tgz#bbbb6da7fae2f9e5c62a45eb91e7dfb071aebc2c"
+  dependencies:
+    validate.io-array "^1.0.3"
+
+validate.io-uppercase@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/validate.io-uppercase/download/validate.io-uppercase-1.0.2.tgz#c8a3c919327c18e33434cf4dfd53c51ff975364a"
+  dependencies:
+    validate.io-string "^1.0.1"
+
+validate.io-uri@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/validate.io-uri/download/validate.io-uri-1.0.0.tgz#d472d5083524b109fa7f87ccf0c5f8801aaf1da8"
+  dependencies:
+    validate.io-string "^1.0.2"
+
+validate.io@^2.0.7:
+  version "2.0.7"
+  resolved "http://registry.npm.taobao.org/validate.io/download/validate.io-2.0.7.tgz#ce01caf376c99eaa259f63fd1b98154c2cb29a48"
+  dependencies:
+    utils-merge2 "^1.0.0"
+    validate.io-absolute-time "^1.0.3"
+    validate.io-alphagram "^1.0.0"
+    validate.io-alphanumeric "^1.0.0"
+    validate.io-alphanumeric-array "^1.0.0"
+    validate.io-anagram "^1.0.0"
+    validate.io-arguments "^1.0.0"
+    validate.io-array "^1.0.6"
+    validate.io-array-array "^1.0.0"
+    validate.io-array-like "^1.0.1"
+    validate.io-array-max "^1.0.1"
+    validate.io-array-min "^1.0.1"
+    validate.io-binary-string "^1.0.0"
+    validate.io-boolean "^1.0.4"
+    validate.io-boolean-array "^1.0.0"
+    validate.io-boolean-primitive "^1.0.0"
+    validate.io-boolean-primitive-array "^1.0.0"
+    validate.io-buffer "^1.0.0"
+    validate.io-color-hexadecimal "^1.0.0"
+    validate.io-contains "^1.0.0"
+    validate.io-email-address "^1.0.0"
+    validate.io-empty "^1.0.2"
+    validate.io-finite "^1.0.0"
+    validate.io-float "^1.0.3"
+    validate.io-float32array "^1.0.0"
+    validate.io-float64array "^1.0.0"
+    validate.io-function "^1.0.2"
+    validate.io-function-array "^1.0.0"
+    validate.io-greater-than "^1.0.2"
+    validate.io-int16array "^1.0.0"
+    validate.io-int32array "^1.0.0"
+    validate.io-int8array "^1.0.0"
+    validate.io-integer "^1.0.5"
+    validate.io-integer-array "^1.0.0"
+    validate.io-integer-primitive "^1.0.0"
+    validate.io-interval "^1.0.2"
+    validate.io-ip-address "^1.0.0"
+    validate.io-json "^1.0.0"
+    validate.io-length "^1.0.2"
+    validate.io-less-than "^1.0.2"
+    validate.io-logical-array "^1.0.0"
+    validate.io-lowercase "^1.0.2"
+    validate.io-matches "^1.0.2"
+    validate.io-matrix "^1.0.0"
+    validate.io-matrix-like "^1.0.2"
+    validate.io-nan "^1.0.3"
+    validate.io-nan-primitive "^1.0.0"
+    validate.io-native-function "^1.0.0"
+    validate.io-ndarray-like "^1.0.0"
+    validate.io-negative "^1.0.0"
+    validate.io-negative-integer "^1.0.0"
+    validate.io-negative-integer-array "^1.0.0"
+    validate.io-negative-zero "^1.0.0"
+    validate.io-nonnegative "^1.0.0"
+    validate.io-nonnegative-integer "^1.0.0"
+    validate.io-nonnegative-integer-array "^1.0.1"
+    validate.io-nonpositive "^1.0.0"
+    validate.io-nonpositive-integer "^1.0.0"
+    validate.io-nonpositive-integer-array "^1.0.0"
+    validate.io-null "^1.0.2"
+    validate.io-number "^1.0.3"
+    validate.io-number-array "^1.0.0"
+    validate.io-number-array-max "^1.0.1"
+    validate.io-number-array-min "^1.0.1"
+    validate.io-number-primitive "^1.0.0"
+    validate.io-number-primitive-array "^1.0.0"
+    validate.io-object "^1.0.4"
+    validate.io-object-array "^1.0.0"
+    validate.io-permutation "^1.0.0"
+    validate.io-positive "^1.0.0"
+    validate.io-positive-integer "^1.0.0"
+    validate.io-positive-integer-array "^1.0.0"
+    validate.io-positive-primitive "^1.0.0"
+    validate.io-positive-zero "^1.0.0"
+    validate.io-primitive "^1.0.0"
+    validate.io-primitive-array "^1.0.0"
+    validate.io-properties "^1.0.2"
+    validate.io-regexp "^1.0.3"
+    validate.io-relative-time "^1.0.2"
+    validate.io-safe-integer "^1.0.1"
+    validate.io-safe-integer-array "^1.0.1"
+    validate.io-size "^1.0.0"
+    validate.io-square-matrix "^1.0.0"
+    validate.io-strict-date "^1.0.3"
+    validate.io-strict-date-array "^1.0.0"
+    validate.io-strict-properties "^1.0.2"
+    validate.io-string "^1.0.2"
+    validate.io-string-array "^1.0.0"
+    validate.io-string-primitive "^1.0.0"
+    validate.io-string-primitive-array "^1.0.0"
+    validate.io-timestamp "^1.0.2"
+    validate.io-typed-array "^1.0.0"
+    validate.io-typed-array-like "^1.0.0"
+    validate.io-uint16array "^1.0.0"
+    validate.io-uint32array "^1.0.0"
+    validate.io-uint8array "^1.0.0"
+    validate.io-uint8array-clamped "^1.0.0"
+    validate.io-undefined "^1.0.3"
+    validate.io-undefined-or-null "^1.0.0"
+    validate.io-unique "^1.0.0"
+    validate.io-uppercase "^1.0.2"
+    validate.io-uri "^1.0.0"
 
 validator@^9.1.0:
   version "9.3.0"

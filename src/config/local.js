@@ -9,7 +9,7 @@ export default {
   plugin: {
     redis: {
       key_prefix: 'fastify_starterkit_api_local_',
-      name: 'fastify-starterkit-api-redis-local',
+      name: 'fastify-starterkit-api-redis-local' ,
       host: '127.0.0.1',
       port: 6379,
       options: {

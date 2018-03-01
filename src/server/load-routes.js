@@ -7,8 +7,6 @@ import config from '../config'
 export default (fastify) => {
   let route_path
 
-  console.log('config.get(\'routes:versions\') = ', config.get('routes'))
-
   config.get('routes:versions').forEach(versioned_route => {
     route_path = path.join(__dirname, '..', 'routes', versioned_route.root_folder)
 

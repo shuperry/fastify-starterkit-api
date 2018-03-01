@@ -6,6 +6,8 @@ export default {
   },
   upload_path: '/apps/crpower/attachments/fastify-starterkit-api-dev',
 
+  middleware: {
+  },
   plugin: {
     redis: {
       key_prefix: 'fastify_starterkit_api_dev_',
