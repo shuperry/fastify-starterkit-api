@@ -11,7 +11,7 @@ class RouterUtil {
     _.keys(fastify.server.req.body).forEach(key => {
       val = fastify.server.req.body[key]
 
-      if (val !== '') {
+      if (_.isString(val) && val !== '') {
         if (validate.isJSON(val)) {
           fastify.server.req.body[key] = JSON.parse(val)
         } else {

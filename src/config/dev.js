@@ -8,6 +8,7 @@ export default {
 
   middleware: {
   },
+
   plugin: {
     redis: {
       key_prefix: 'fastify_starterkit_api_dev_',
