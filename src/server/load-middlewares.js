@@ -10,7 +10,7 @@ export default (fastify) => {
   ]
 
   middlewares.forEach(middleware => {
-    logger.info('loading middleware: ', middleware)
+    logger.info('loading middleware:', middleware)
 
     fastify.use(require(middleware)(config.get(`middleware:${middleware}`)))
   })

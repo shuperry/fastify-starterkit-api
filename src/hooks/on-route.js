@@ -1,5 +1,5 @@
 module.exports = (fastify) => {
-  fastify.addHook('onRoute', (routeOptions) => {
-    logger.info('binding route:', `[${routeOptions.method}]`, routeOptions.url)
+  fastify.addHook('onRoute', (routerOptions) => {
+    logger.info('loading router:', `[${routerOptions.method}]`, routerOptions.url)
   })
 }

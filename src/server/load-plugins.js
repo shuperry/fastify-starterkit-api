@@ -14,7 +14,7 @@ export default (fastify) => {
   ]
 
   plugins.forEach(pluginName => {
-    logger.info('loading plugin: ', pluginName)
+    logger.info('loading plugin:', pluginName)
 
     fastify.register(require(`../plugins/${pluginName}`), config.get(`plugin:${pluginName}`))
   })
