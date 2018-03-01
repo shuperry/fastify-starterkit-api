@@ -7,7 +7,7 @@ import multer from 'multer'
 
 import categoryService from '../../services/category-service'
 
-import RouteUtil from '../../utils/route-util'
+import RouterUtil from '../../utils/router-util'
 
 const moduleChName = '通用类别'
 
@@ -57,7 +57,7 @@ export default (fastify, opts, next) => {
         })
       },
       (request, reply, next) => { // 处理 multipart/form-data 表单中特殊的数据.
-        RouteUtil.dealSpecialMultipartFormdataRouteParam(fastify)
+        RouterUtil.dealSpecialMultipartFormdataRouterParam(fastify)
 
         next()
       }

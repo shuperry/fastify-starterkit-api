@@ -3,7 +3,7 @@ import ip from 'ip'
 import loadMiddlewares from './load-middlewares'
 import loadHooks from './load-hooks'
 import loadPlugins from './load-plugins'
-import loadRoutes from './load-routes'
+import loadRouters from './load-routers'
 import cacheStaticData from './cache-static-data'
 import testSth from './test-sth'
 
@@ -36,7 +36,7 @@ loadHooks(fastify)
 
 loadPlugins(fastify)
 
-loadRoutes(fastify)
+loadRouters(fastify)
 
 global.fastify = fastify
 

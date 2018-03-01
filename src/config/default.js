@@ -3,7 +3,7 @@ export default {
   log: {
     level: 'debug'
   },
-  routes: {
+  routers: {
     base_prefix: '/api',
     versions: [
       {

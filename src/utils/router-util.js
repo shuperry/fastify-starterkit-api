@@ -1,12 +1,12 @@
 import _ from 'lodash'
 import validate from 'validate.io'
 
-class RouteUtil {
+class RouterUtil {
   constructor() {
 
   }
 
-  static dealSpecialMultipartFormdataRouteParam(fastify) {
+  static dealSpecialMultipartFormdataRouterParam(fastify) {
     let val
     _.keys(fastify.server.req.body).forEach(key => {
       val = fastify.server.req.body[key]
@@ -43,4 +43,4 @@ class RouteUtil {
   }
 }
 
-export default RouteUtil
+export default RouterUtil
