@@ -11,17 +11,15 @@ class RouterUtil {
     _.keys(fastify.server.req.body).forEach(key => {
       val = fastify.server.req.body[key]
 
-      if (validate.isJSON(val)) {
-        fastify.server.req.body[key] = JSON.parse(val)
-      }
-
-      if (_.isString(val) && !validate.isJSON(val)) {
-        if (val !== '') {
+      if (val !== '') {
+        if (validate.isJSON(val)) {
+          fastify.server.req.body[key] = JSON.parse(val)
+        } else {
           if (_.isNumber(_.toNumber(val)) && !_.isNaN(_.toNumber(val))) {
             fastify.server.req.body[key] = _.toNumber(val)
           } else if (_.toLower(_.trim(val)) === 'undefined' || _.toLower(_.trim(val)) === 'null' || _.trim(val) === 'NaN') {
             /**
-             * set un-normal value to null
+             * set un-normal value to null.
              *
              * 1. 为支持部分字段从有值改为无值.
              */

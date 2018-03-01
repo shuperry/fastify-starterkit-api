@@ -16,15 +16,14 @@ const upload = multer({dest: config.get('upload_path')})
 export default (fastify, opts, next) => {
   fastify.get('/hello', {
     schema: {
-      querystring: Joi.object().keys({
-        hello: Joi.string()
-      }).optional()
+      querystring: Joi.object({
+        hello: Joi.number()
+      })
     },
-    schemaCompiler: schema => data => Joi.validate(data, schema),
+    schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: true }),
     handler: async (request, reply) => {
       return {
-        hello: 'hello world!',
-        error: 'has error'
+        hello: 'hello world!'
       }
     }
   })
