@@ -31,7 +31,7 @@ We use [nconf](https://www.npmjs.com/package/nconf) to manage configuration betw
 
 1. Start core serice script: `npm run prod_cluster`.
 
-> Execute start service script except local env need install pm2 globally: `npm install pm2 -g`.
+> Execute start service script except local env need install pm2 globally: `npm install pm2 pino -g`.
 
 ### development mode
 
