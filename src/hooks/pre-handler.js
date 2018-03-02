@@ -33,6 +33,7 @@ const loggerForBeginVisitUrl = ({fastify, request}) => {
 const checkAuthority = ({fastify, request, reply}) => {
   const authIgnoreUrls = config.get('auth:ignore_urls') || []
   const matchedIgnoreUrls = []
+
   authIgnoreUrls
     .filter(urlPath => new RegExp(`^${urlPath}.*`).test(request.raw.url))
     .forEach(urlPath => matchedIgnoreUrls.push(urlPath))
