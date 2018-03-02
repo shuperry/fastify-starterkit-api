@@ -8,7 +8,8 @@ export default (fastify) => {
     'sequelize',
     'nodemailer',
     'compress',
-    // 'mongodb',
+    'favicon',
+    // 'mongoose',
     // 'static-server',
     // 'knexjs'
   ]

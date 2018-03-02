@@ -7,6 +7,12 @@ export default {
   upload_path: '/apps/crpower/attachments/fastify-starterkit-api-dev',
 
   middleware: {
+    cors: {
+      origin: '*', // also support array, eg: ["http://example1.com", /\.example2\.com$/].
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      preflightContinue: false,
+      optionsSuccessStatus: 204
+    }
   },
 
   plugin: {
@@ -54,6 +60,9 @@ export default {
     urls: [
     ],
     pass_urls: [
+    ],
+    ignore_urls: [
+      '/api/v1/categories'
     ]
   }
 }

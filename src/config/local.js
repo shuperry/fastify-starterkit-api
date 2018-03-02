@@ -51,6 +51,13 @@ export default {
     urls: [
     ],
     pass_urls: [
+    ],
+    ignore_urls: [
+      /**
+       * urls will be ignored during check authority with or without authorization in request headers.
+       *
+       * eg: '/api/v1/categories'
+       */
     ]
   }
 }
