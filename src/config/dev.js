@@ -54,19 +54,5 @@ export default {
         }
       }
     }
-  },
-
-  auth: {
-    urls: [
-    ],
-    pass_urls: [
-    ],
-    /**
-     * urls will be ignored during check authority with or without or with wrong authorization in request headers.
-     *
-     * eg: '/api/v1/categories'
-     */
-    ignore_urls: [
-    ]
   }
 }

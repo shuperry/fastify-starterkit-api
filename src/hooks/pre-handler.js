@@ -31,90 +31,146 @@ const loggerForBeginVisitUrl = ({fastify, request}) => {
 }
 
 const checkAuthority = ({fastify, request, reply}) => {
-  const authIgnoreUrls = config.get('auth:ignore_urls') || []
-  const matchedIgnoreUrls = []
+  if (request && request.raw) {
+    const authIgnoreUrls = config.get('auth:ignore_urls') || []
+    const matchedIgnoreUrls = []
 
-  authIgnoreUrls
-    .filter(urlPath => new RegExp(`^${urlPath}.*`).test(request.raw.url))
-    .forEach(urlPath => matchedIgnoreUrls.push(urlPath))
+    authIgnoreUrls
+      .filter(url => {
+        if (_.isString(url)) {
+          return new RegExp(`^${url}.*`).test(request.raw.url)
+        } else if (_.isPlainObject(url) && StringUtil.isNotBlank(url.path)) {
+          return new RegExp(`^${url.path}.*`).test(request.raw.url)
+        }
+      })
+      .forEach(url => {
+        if (_.isString(url)) {
+          matchedIgnoreUrls.push(url)
+        } else if (_.isPlainObject(url) && StringUtil.isNotBlank(url.path)) {
+          if (url.method) {
+            if (_.isString(url.method) && _.toLower(url.method) === _.toLower(request.raw.method)) {
+              matchedIgnoreUrls.push(url)
+            } else if (_.isArray(url.method) && _.includes(url.method, request.raw.method)) {
+              matchedIgnoreUrls.push(url)
+            }
+          }
+        }
+      })
 
-  // ignore_urls in config ignore check authority.
-  if (matchedIgnoreUrls.length === 0) {
-    // pass_urls in config pass check authority.
-    const authPassUrls = config.get('auth:pass_urls') || []
-    const matchedPassUrls = []
+    // ignore_urls in config ignore check authority.
+    if (matchedIgnoreUrls.length === 0) {
+      // pass_urls in config pass check authority.
+      const authPassUrls = config.get('auth:pass_urls') || []
+      const matchedPassUrls = []
 
-    authPassUrls
-      .filter(urlPath => new RegExp(`^${urlPath}.*`).test(request.raw.url))
-      .forEach(urlPath => matchedPassUrls.push(urlPath))
+      authPassUrls
+        .filter(url => {
+          if (_.isString(url)) {
+            return new RegExp(`^${url}.*`).test(request.raw.url)
+          } else if (_.isPlainObject(url) && StringUtil.isNotBlank(url.path)) {
+            return new RegExp(`^${url.path}.*`).test(request.raw.url)
+          }
+        })
+        .forEach(url => {
+          if (_.isString(url)) {
+            matchedPassUrls.push(url)
+          } else if (_.isPlainObject(url) && StringUtil.isNotBlank(url.path)) {
+            if (url.method) {
+              if (_.isString(url.method) && _.toLower(url.method) === _.toLower(request.raw.method)) {
+                matchedPassUrls.push(url)
+              } else if (_.isArray(url.method) && _.includes(url.method, request.raw.method)) {
+                matchedPassUrls.push(url)
+              }
+            }
+          }
+        })
 
-    if (matchedPassUrls.length > 0) {
-      if (StringUtil.isNotBlank(request.headers.authorization)) {
-        try {
-          const user = fastify.jwt.verify(request.headers.authorization, { passthrough: true })
-          logger.info('current logged in user =', user)
+      if (matchedPassUrls.length > 0) {
+        if (request.headers && StringUtil.isNotBlank(request.headers.authorization)) {
+          try {
+            const user = fastify.jwt.verify(request.headers.authorization, { passthrough: true })
+            logger.info('current logged in user =', user)
 
-          fastify.server.user = user
-        } catch (e) {
+            fastify.server.user = user
+          } catch (e) {
+            reply.code(401).send({
+              error: jwtErrorMessageMap[e.name]
+            })
+
+            return
+          }
+        } else {
           reply.code(401).send({
-            error: jwtErrorMessageMap[e.name]
+            error: jwtErrorMessageMap['MissJsonWebTokenError']
           })
 
           return
         }
-      } else {
-        reply.code(401).send({
-          error: jwtErrorMessageMap['MissJsonWebTokenError']
+      }
+
+      // only urls in config file need check authority.
+      const matchedAuthUrls = []
+      const authUrls = config.get('auth:urls') || []
+
+      authUrls
+        .filter(url => {
+          if (_.isString(url)) {
+            return new RegExp(`^${url}.*`).test(request.raw.url)
+          } else if (_.isPlainObject(url) && StringUtil.isNotBlank(url.path)) {
+            return new RegExp(`^${url.path}.*`).test(request.raw.url)
+          }
+        })
+        .forEach(url => {
+          if (_.isString(url)) {
+            matchedAuthUrls.push(url)
+          } else if (_.isPlainObject(url) && StringUtil.isNotBlank(url.path)) {
+            if (url.method) {
+              if (_.isString(url.method) && _.toLower(url.method) === _.toLower(request.raw.method)) {
+                matchedAuthUrls.push(url)
+              } else if (_.isArray(url.method) && _.includes(url.method, request.raw.method)) {
+                matchedAuthUrls.push(url)
+              }
+            }
+          }
         })
 
-        return
-      }
-    }
+      if (matchedAuthUrls.length > 0) {
+        if (request.headers && StringUtil.isNotBlank(request.headers.authorization)) {
+          try {
+            const user = fastify.jwt.verify(request.headers.authorization)
+            logger.info('current logged in user =', user)
 
-    // only urls in config file need check authority.
-    const matchedAuthUrls = []
-    const authUrls = config.get('auth:urls') || []
+            fastify.server.user = user
+          } catch (e) {
+            reply.code(401).send({
+              error: jwtErrorMessageMap[e.name]
+            })
 
-    authUrls
-      .filter(urlPath => new RegExp(`^${urlPath}.*`).test(request.raw.url))
-      .forEach(urlPath => matchedAuthUrls.push(urlPath))
-
-    if (matchedAuthUrls.length > 0) {
-      if (StringUtil.isNotBlank(request.headers.authorization)) {
-        try {
-          const user = fastify.jwt.verify(request.headers.authorization)
-          logger.info('current logged in user =', user)
-
-          fastify.server.user = user
-        } catch (e) {
+            return
+          }
+        } else {
           reply.code(401).send({
-            error: jwtErrorMessageMap[e.name]
+            error: jwtErrorMessageMap['MissJsonWebTokenError']
           })
 
           return
         }
-      } else {
-        reply.code(401).send({
-          error: jwtErrorMessageMap['MissJsonWebTokenError']
-        })
+      } else { // if urls not in urls and passUrls, but has authorization in header, we check authority and passthrough.
+        if (request.headers && StringUtil.isNotBlank(request.headers.authorization)) {
+          try {
+            const user = fastify.jwt.verify(request.headers.authorization, { passthrough: true })
+            logger.info('current logged in user =', user)
 
-        return
-      }
-    } else { // if urls not in urls and passUrls, but has authorization in header, we check authority and passthrough.
-      if (StringUtil.isNotBlank(request.headers.authorization)) {
-        try {
-          const user = fastify.jwt.verify(request.headers.authorization, { passthrough: true })
-          logger.info('current logged in user =', user)
+            fastify.server.user = user
+          } catch (e) {
+            logger.error('check authorization with err = ', e)
 
-          fastify.server.user = user
-        } catch (e) {
-          logger.error('check authorization with err = ', e)
+            reply.code(401).send({
+              error: jwtErrorMessageMap[e.name]
+            })
 
-          reply.code(401).send({
-            error: jwtErrorMessageMap[e.name]
-          })
-
-          return
+            return
+          }
         }
       }
     }

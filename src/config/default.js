@@ -73,6 +73,35 @@ export default {
       global: false
     }
   },
+
+  /**
+   * 注: 如果 method 配置缺失, 则默认为此地址前缀的所有方法的请求都会被纳入检查范围内.
+     e.g:
+     '/api/v1/categories'
+     or
+     {
+       path: '/api/v1/categories',
+       method: 'get'
+     }
+   */
+  auth: {
+    /**
+     * headers 中必须有正确并未失效的 authorization.
+     */
+    urls: [],
+    pass_urls: [],
+
+    /**
+     * headers 中有或没有或有错误的 authorization, 请求的权限认证都会被忽略.
+     */
+    ignore_urls: [
+      {
+        path: '/api/v1/categories',
+        method: 'get'
+      }
+    ]
+  },
+
   page: {
     limit: 10
   },

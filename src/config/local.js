@@ -23,9 +23,9 @@ export default {
     jwt: {
       secret_key: '2027EkgGJAti9B9iokygFVgsY',
       options: {
-        // expiresIn: '1d',
+        expiresIn: '1d', // day.
 
-        expiresIn: 5 // second.
+        // expiresIn: 5 // second.
       }
     },
     sequelize: {
@@ -45,19 +45,5 @@ export default {
         }
       }
     }
-  },
-
-  auth: {
-    urls: [
-    ],
-    pass_urls: [
-    ],
-    /**
-     * urls will be ignored during check authority with or without or with wrong authorization in request headers.
-     *
-     * eg: '/api/v1/categories'
-     */
-    ignore_urls: [
-    ]
   }
 }
