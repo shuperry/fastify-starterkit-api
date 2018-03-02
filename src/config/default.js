@@ -78,7 +78,9 @@ export default {
    * 注: 如果 method 配置缺失, 则默认为此地址前缀的所有方法的请求都会被纳入检查范围内.
      e.g:
      '/api/v1/categories'
+
      or
+
      {
        path: '/api/v1/categories',
        method: 'get'
