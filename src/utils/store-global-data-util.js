@@ -21,8 +21,8 @@ class StoreGlobalDataUtil {
       categoriesIdMap[categoryJson.category_id] = categoryJson
     })
 
-    g_api.categoriesCodeMap = categoriesCodeMap
-    g_api.categoriesIdMap = categoriesIdMap
+    fastify.categoriesCodeMap = categoriesCodeMap
+    fastify.categoriesIdMap = categoriesIdMap
   }
 }
 

@@ -9,8 +9,6 @@ import testSth from './test-sth'
 
 import config from '../config'
 
-global.g_api = {}
-
 global.config = config
 
 const logger = require('pino')(config.get('log'))
