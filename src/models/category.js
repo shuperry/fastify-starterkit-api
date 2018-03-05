@@ -39,6 +39,8 @@ export default (sequelize, DataTypes) => {
           this.setDataValue('created_at', null)
         } else if (_.isNumber(val) || (_.isString(val) && _.isNumber(_.toNumber(val)))) {
           this.setDataValue('created_at', new Date(_.toNumber(val)))
+        } else if (_.isDate(val)) {
+          this.setDataValue('created_at', val)
         }
       },
       get: function () {
