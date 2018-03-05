@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import moment from 'moment'
 
 export default (sequelize, DataTypes) => {
@@ -33,6 +34,13 @@ export default (sequelize, DataTypes) => {
     created_at: {
       type: DataTypes.DATE(6),
       field: 'created_at',
+      set: function(val) {
+        if (_.isNull(val) || _.isUndefined(val) || _.trim(val) === '') {
+          this.setDataValue('created_at', null)
+        } else if (_.isNumber(val) || (_.isString(val) && _.isNumber(_.toNumber(val)))) {
+          this.setDataValue('created_at', new Date(_.toNumber(val)))
+        }
+      },
       get: function () {
         const dataVal = this.getDataValue('created_at')
         return moment.isDate(dataVal) ? moment(dataVal).valueOf() : dataVal
