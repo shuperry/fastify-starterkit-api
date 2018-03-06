@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 
 import _ from 'lodash'
-import Joi from 'joi'
+import Joi from '../../utils/joi-util'
 import multer from 'multer'
 
 import categoryService from '../../services/category-service'
@@ -17,7 +17,7 @@ export default (fastify, opts, next) => {
   fastify.get('/hello', {
     schema: {
       querystring: Joi.object({
-        hello: Joi.number()
+        hello: Joi.number().map([0, 1])
       })
     },
     schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: true }),

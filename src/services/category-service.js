@@ -1,8 +1,8 @@
 import {transaction} from '../decorators/service-decorator'
 
-import categoryHelper from '../helpers/category-helper'
-
 import StoreGlobalDataUtil from '../utils/store-global-data-util'
+
+import categoryHelper from '../helpers/category-helper'
 
 class CategoryService {
   constructor() {
