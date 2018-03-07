@@ -93,16 +93,12 @@ const checkAuthority = ({fastify, request, reply}) => {
 
             fastify.server.user = user
           } catch (e) {
-            reply.code(401).send({
-              error: jwtErrorMessageMap[e.name]
-            })
+            reply.code(401).send(new Error(jwtErrorMessageMap[e.name]))
 
             return
           }
         } else {
-          reply.code(401).send({
-            error: jwtErrorMessageMap['MissJsonWebTokenError']
-          })
+          reply.code(401).send(new Error(jwtErrorMessageMap['MissJsonWebTokenError']))
 
           return
         }
@@ -142,16 +138,12 @@ const checkAuthority = ({fastify, request, reply}) => {
 
             fastify.server.user = user
           } catch (e) {
-            reply.code(401).send({
-              error: jwtErrorMessageMap[e.name]
-            })
+            reply.code(401).send(new Error(jwtErrorMessageMap[e.name]))
 
             return
           }
         } else {
-          reply.code(401).send({
-            error: jwtErrorMessageMap['MissJsonWebTokenError']
-          })
+          reply.code(401).send(new Error(jwtErrorMessageMap['MissJsonWebTokenError']))
 
           return
         }
@@ -165,9 +157,7 @@ const checkAuthority = ({fastify, request, reply}) => {
           } catch (e) {
             logger.error('check authorization with err = ', e)
 
-            reply.code(401).send({
-              error: jwtErrorMessageMap[e.name]
-            })
+            reply.code(401).send(new Error(jwtErrorMessageMap[e.name]))
 
             return
           }

@@ -2,32 +2,16 @@ import fs from 'fs'
 import path from 'path'
 
 import _ from 'lodash'
-import Joi from '../../utils/joi-util'
 import multer from 'multer'
 
 import categoryService from '../../services/category-service'
-
-import RouterUtil from '../../utils/router-util'
-
-const moduleChName = '通用类别'
+import Joi from '../../utils/joi-util'
 
 const upload = multer({dest: config.get('upload_path')})
 
-export default (fastify, opts, next) => {
-  fastify.get('/hello', {
-    schema: {
-      querystring: Joi.object({
-        hello: Joi.number().map([0, 1])
-      })
-    },
-    schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: true }),
-    handler: async (request, reply) => {
-      return {
-        hello: 'hello world!'
-      }
-    }
-  })
+const moduleChName = '通用类别'
 
+export default (fastify, opts, next) => {
   fastify.post('/files', {
     schema: {
       querystring: {
@@ -91,28 +75,15 @@ export default (fastify, opts, next) => {
 
   fastify.get('/categories', {
     schema: {
-      querystring: {
-        type: 'object',
-        properties: {
-          keyText: {
-            type: 'string'
-          },
-          name: {
-            type: 'string'
-          },
-          code: {
-            type: 'string'
-          },
-          parent_id: {
-            type: 'integer'
-          },
-          category_id: {
-            type: 'integer'
-          }
-        },
-        // required: ['name']
-      }
+      querystring: Joi.object({
+        keyText: Joi.string().optional(),
+        name: Joi.string().optional(),
+        code: Joi.string().optional(),
+        parent_id: Joi.number().integer().optional(),
+        category_id: Joi.number().integer().optional()
+      })
     },
+    schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: false }),
     beforeHandler(request, reply, next) {
       logger.info('into get categories route beforeHandler hook')
 
@@ -123,20 +94,16 @@ export default (fastify, opts, next) => {
 
       const result = await categoryService.getCategories(fastify, params)
 
-      const messages = {
+      const errMessages = {
         notExists: `${moduleChName}不存在`
       }
 
       if (_.isPlainObject(result) && result.flag === false) {
-        return {
-          statusCode: (result.status_code || 400),
-          error: (result.error_msg || messages[result.error_code])
-        }
+        reply.code(400).send(new Error(result.error_msg || errMessages[result.error_code]))
       } else {
-        return {
-          result,
-          error: null
-        }
+        reply.send({
+          result
+        })
       }
     }
   })
@@ -144,36 +111,28 @@ export default (fastify, opts, next) => {
   fastify.post('/categories', {
     schema: {
       body: {
-        type: 'object',
-        properties: {
-          rank: {
-            type: 'number'
-          },
-          parent_id: {
-            type: 'integer'
-          }
-        }
+        name: Joi.string().required(),
+        code: Joi.string().allow('').optional(),
+        rank: Joi.number().optional(),
+        parent_id: Joi.number().integer().optional()
       }
     },
+    schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: false }),
     handler: async (request, reply) => {
       const params = _.extend({}, request.body || {})
 
       const result = await categoryService.createCategory(fastify, params)
 
-      const messages = {
+      const errMessages = {
         parentNotExists: `上级${moduleChName}不存在`
       }
 
       if (_.isPlainObject(result) && result.flag === false) {
-        return {
-          statusCode: (result.status_code || 400),
-          error: (result.error_msg || messages[result.error_code])
-        }
+        reply.code(400).send(new Error(result.error_msg || errMessages[result.error_code]))
       } else {
-        return {
-          result,
-          error: null
-        }
+        reply.send({
+          result
+        })
       }
     }
   })
@@ -181,48 +140,32 @@ export default (fastify, opts, next) => {
   fastify.patch('/categories/:category_id', {
     schema: {
       params: {
-        type: 'object',
-        properties: {
-          category_id: {
-            type: 'integer'
-          }
-        }
+        category_id: Joi.number().integer().required()
       },
       body: {
-        type: 'object',
-        properties: {
-          name: {
-            type: 'string'
-          },
-          rank: {
-            type: 'number'
-          },
-          parent_id: {
-            type: 'integer'
-          }
-        }
+        name: Joi.string().optional(),
+        code: Joi.string().allow('').optional(),
+        rank: Joi.number().optional(),
+        parent_id: Joi.number().integer().optional()
       }
     },
+    schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: false }),
     handler: async (request, reply) => {
-      const params = _.merge({}, request.params || {}, request.body || {})
+      const params = _.extend({}, request.params || {}, request.body || {})
 
       const result = await categoryService.updateCategory(fastify, params)
 
-      const messages = {
+      const errMessages = {
         notExists: `${moduleChName}不存在`,
         parentNotExists: `上级${moduleChName}不存在`
       }
 
       if (_.isPlainObject(result) && result.flag === false) {
-        return {
-          statusCode: (result.status_code || 400),
-          error: (result.error_msg || messages[result.error_code])
-        }
+        reply.code(400).send(new Error(result.error_msg || errMessages[result.error_code]))
       } else {
-        return {
-          result,
-          error: null
-        }
+        reply.send({
+          result
+        })
       }
     }
   })
@@ -230,33 +173,25 @@ export default (fastify, opts, next) => {
   fastify.get('/categories/:category_id', {
     schema: {
       params: {
-        type: 'object',
-        properties: {
-          category_id: {
-            type: 'integer'
-          }
-        }
+        category_id: Joi.number().integer().required()
       }
     },
+    schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: false }),
     handler: async (request, reply) => {
-      const params = _.merge({}, request.params || {})
+      const params = _.extend({}, request.params || {})
 
       const result = await categoryService.getCategoryById(fastify, params)
 
-      const messages = {
+      const errMessages = {
         notExists: `${moduleChName}不存在`
       }
 
       if (_.isPlainObject(result) && result.flag === false) {
-        return {
-          statusCode: (result.status_code || 400),
-          error: (result.error_msg || messages[result.error_code])
-        }
+        reply.code(400).send(new Error(result.error_msg || errMessages[result.error_code]))
       } else {
-        return {
-          result,
-          error: null
-        }
+        reply.send({
+          result
+        })
       }
     }
   })

@@ -7,14 +7,18 @@ class RedisUtil {
   }
 
   async set(keyPrefix = '', key, objVal) {
-    if (this.redisClient) {
+    if (config.get('switches:redis') === false) {
+      logger.warn('redis 服务已被关闭, 如要使用此服务, 需开启 switches:nodemailer 开关.')
+    } else if (this.redisClient) {
       const res = await this.redisClient.set(this.app_key_prefix + keyPrefix + _.toString(key), JSON.stringify(objVal))
       return res === 'OK' ? 'OK' : 'wrong'
     }
   }
 
   async store(keyPrefix = '', key, objVal) {
-    if (this.redisClient) {
+    if (config.get('switches:redis') === false) {
+      logger.warn('redis 服务已被关闭, 如要使用此服务, 需开启 switches:nodemailer 开关.')
+    } else if (this.redisClient) {
       const res = await this.redisClient.set(this.app_key_prefix + keyPrefix + _.toString(key), JSON.stringify(objVal))
       return res === 'OK' ? 'OK' : 'wrong'
     }
@@ -35,7 +39,9 @@ class RedisUtil {
   }
 
   async multiGet(keyPrefix = '', keys = []) {
-    if (this.redisClient) {
+    if (config.get('switches:redis') === false) {
+      logger.warn('redis 服务已被关闭, 如要使用此服务, 需开启 switches:nodemailer 开关.')
+    } else if (this.redisClient) {
       const multiGetArr = [], results = []
 
       if (_.isArray(keys)) {
@@ -61,14 +67,18 @@ class RedisUtil {
   }
 
   async del(keyPrefix = '', key) {
-    if (this.redisClient) {
+    if (config.get('switches:redis') === false) {
+      logger.warn('redis 服务已被关闭, 如要使用此服务, 需开启 switches:nodemailer 开关.')
+    } else if (this.redisClient) {
       const res = await this.redisClient.del(this.app_key_prefix + keyPrefix + _.toString(key))
       return res === 0 ? 'OK' : 'wrong'
     }
   }
 
   async batchDel(keyPrefix = '', keys = []) {
-    if (this.redisClient) {
+    if (config.get('switches:redis') === false) {
+      logger.warn('redis 服务已被关闭, 如要使用此服务, 需开启 switches:nodemailer 开关.')
+    } else if (this.redisClient) {
       const multiDelArr = []
 
       if (_.isArray(keys)) {
@@ -83,7 +93,9 @@ class RedisUtil {
   }
 
   async flushdb() {
-    if (this.redisClient) {
+    if (config.get('switches:redis') === false) {
+      logger.warn('redis 服务已被关闭, 如要使用此服务, 需开启 switches:nodemailer 开关.')
+    } else if (this.redisClient) {
       await this.redisClient.flushdb()
     }
   }

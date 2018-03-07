@@ -6,8 +6,12 @@ import RedisUtil from '../utils/redis-util'
 const fastifyPlugin = (fastify, opts, next) => {
   logger.info('loading redis plugin with opts =', opts)
 
+  if (config.get('switches:redis') === false) {
+    logger.warn('redis 服务已被关闭, 如要使用此服务, 需开启 switches:nodemailer 开关.')
+  }
+
   let client = null,
-      redisUtil = null
+    redisUtil = null
 
   try {
     client = new Redis(opts.port, opts.host, opts.options)

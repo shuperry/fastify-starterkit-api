@@ -56,7 +56,7 @@ export default async ({protocol = 'http', host = '127.0.0.1', port = 80, url, me
       break
   }
 
-  logger.info('visiting url => [', res.request.method, ']', res.request.uri.href, '\n data =>', params, '\n res = ', '{', '\n  statusCode:', res.statusCode, '\n  statusMessage:', res.statusMessage, '\n  body:', res.body, '\n}')
+  logger.debug('visiting url => [', res.request.method, ']', res.request.uri.href, '\n data =>', params, '\n res = ', res)
 
   return res
 }

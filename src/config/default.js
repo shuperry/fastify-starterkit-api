@@ -109,5 +109,15 @@ export default {
   },
   files: {
     maxUploadCount: 100
+  },
+
+  /**
+   * 公用开关.
+   *
+   * @description 如果某项服务开关设置为 false, 在公用工具处此项服务不会生效, 并且会有警告日志.
+   */
+  switches: {
+    redis: false,
+    nodemailer: false
   }
 }
