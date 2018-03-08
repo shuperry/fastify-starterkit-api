@@ -98,13 +98,15 @@ export default (fastify, opts, next) => {
         notExists: `${moduleChName}不存在`
       }
 
-      if (_.isPlainObject(result) && result.flag === false) {
-        reply.code(400).send(new Error(result.error_msg || errMessages[result.error_code]))
-      } else {
-        reply.send({
-          result
-        })
-      }
+      reply.code(400).send(new Error('我错了'))
+
+      // if (_.isPlainObject(result) && result.flag === false) {
+      //   reply.code(400).send(new Error(result.error_msg || errMessages[result.error_code]))
+      // } else {
+      //   reply.send({
+      //     result
+      //   })
+      // }
     }
   })
 
