@@ -34,7 +34,7 @@ export default (fastify, opts, next) => {
 
         next()
       },
-      (request, reply, next) => { // 验证 multipart/form-data 表单中除文件之外的.
+      (request, reply, next) => { // 验证 multipart/form-data 表单参数.
         const schema = Joi.object({
           title: Joi.string().required(),
           files: Joi.object({
