@@ -7,6 +7,8 @@ class RouterUtil {
   }
 
   static dealSpecialMultipartFormdataRouterParam(fastify) {
+    fastify.server.req.body = fastify.server.req.body || {}
+
     let val
     _.keys(fastify.server.req.body).forEach(key => {
       val = fastify.server.req.body[key]
@@ -38,6 +40,8 @@ class RouterUtil {
         }
       }
     })
+
+    fastify.server.req.body.files = fastify.server.req.files
   }
 }
 

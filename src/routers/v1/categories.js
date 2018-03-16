@@ -5,7 +5,9 @@ import _ from 'lodash'
 import multer from 'multer'
 
 import categoryService from '../../services/category-service'
+
 import Joi from '../../utils/joi-util'
+import RouterUtil from '../../utils/router-util'
 
 const upload = multer({dest: config.get('upload_path')})
 
@@ -13,23 +15,11 @@ const moduleChName = '通用类别'
 
 export default (fastify, opts, next) => {
   fastify.post('/files', {
-    schema: {
-      querystring: {
-        type: 'object',
-        properties: {
-          name: {
-            type: 'string'
-          }
-        }
-      }
-    },
     beforeHandler: [ // beforeHandler 函数只支持同步, 否则会出现提前进入 handler 函数的问题.
       (request, reply, next) => { // 上传文件.
         upload.fields([
-          {
-            name: 'files',
-            maxCount: config.get('files:maxUploadCount')
-          }
+          { name: 'files' },
+          { name: 'files2' }
         ])(fastify.server.req, fastify.server.res, err => {
           if (err) {
             logger.error('upload file with err =', err)
@@ -43,6 +33,23 @@ export default (fastify, opts, next) => {
         RouterUtil.dealSpecialMultipartFormdataRouterParam(fastify)
 
         next()
+      },
+      (request, reply, next) => { // 验证 multipart/form-data 表单中除文件之外的.
+        const schema = Joi.object({
+          title: Joi.string().required(),
+          files: Joi.object({
+            files: Joi.array().min(1).max(config.get('files:maxUploadCount')).required(),
+            files2: Joi.array().min(1).max(config.get('files:maxUploadCount')).optional()
+          })
+        })
+
+        Joi.validate(fastify.server.req.body, schema, { allowUnknown: false }, (err) => {
+          if (err) {
+            reply.code(400).send(err)
+          }
+
+          next()
+        })
       }
     ],
     handler: async (request, reply) => {
@@ -98,15 +105,13 @@ export default (fastify, opts, next) => {
         notExists: `${moduleChName}不存在`
       }
 
-      reply.code(400).send(new Error('我错了'))
-
-      // if (_.isPlainObject(result) && result.flag === false) {
-      //   reply.code(400).send(new Error(result.error_msg || errMessages[result.error_code]))
-      // } else {
-      //   reply.send({
-      //     result
-      //   })
-      // }
+      if (_.isPlainObject(result) && result.flag === false) {
+        reply.code(400).send(new Error(result.error_msg || errMessages[result.error_code]))
+      } else {
+        reply.send({
+          result
+        })
+      }
     }
   })
 

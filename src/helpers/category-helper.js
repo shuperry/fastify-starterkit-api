@@ -183,37 +183,6 @@ class CategoryHelper {
     })
   }
 
-  async getCategoryByCode({code}) {
-    const {models} = fastify.sequelize
-
-    const where = {code}
-
-    return await models.Category.find({
-      where,
-      include: [
-        {
-          model: models.Category,
-          as: 'descendents',
-          hierarchy: true
-        },
-        {
-          model: models.Category,
-          as: 'parent'
-        }
-      ],
-      order: [
-        [
-          {
-            model: models.Category,
-            as: 'descendents'
-          },
-          'rank',
-          'ASC'
-        ]
-      ]
-    })
-  }
-
   async createCategory(fastify, params) {
     const {models} = fastify.sequelize
 
