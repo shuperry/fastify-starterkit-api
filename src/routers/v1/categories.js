@@ -22,19 +22,15 @@ export default (fastify, opts, next) => {
           { name: 'files2' }
         ])(fastify.server.req, fastify.server.res, err => {
           if (err) {
-            logger.error('upload file with err =', err)
-            return
+            reply.code(400).send(err)
           }
 
           next()
         })
       },
-      (request, reply, next) => { // 处理 multipart/form-data 表单中特殊的数据.
+      (request, reply, next) => { // 处理及验证 multipart/form-data 表单参数.
         RouterUtil.dealSpecialMultipartFormdataRouterParam(fastify)
 
-        next()
-      },
-      (request, reply, next) => { // 验证 multipart/form-data 表单参数.
         const schema = Joi.object({
           title: Joi.string().required(),
           files: Joi.object({
