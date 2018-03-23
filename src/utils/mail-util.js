@@ -29,7 +29,7 @@ class MailUtil {
       logger.warn('邮件服务已被关闭, 如要使用此服务, 需开启 switches:nodemailer 开关.')
 
       return {
-        injected: receiver
+        rejected: receiver
       }
     }
 

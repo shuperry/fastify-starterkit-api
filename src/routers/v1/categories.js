@@ -11,7 +11,7 @@ import RouterUtil from '../../utils/router-util'
 
 const upload = multer({dest: config.get('upload_path')})
 
-const moduleChName = '通用类别'
+const moduleCNName = '通用类别'
 
 export default (fastify, opts, next) => {
   fastify.post('/files', {
@@ -58,7 +58,7 @@ export default (fastify, opts, next) => {
     }
   })
 
-  fastify.get('/send-files', {
+  fastify.get('/download-files', {
     schema: {
       querystring: {
         type: 'object',
@@ -71,7 +71,10 @@ export default (fastify, opts, next) => {
     },
     handler: async (request, reply) => {
       reply
-      // .type('text/plain')
+        .type('application/octet-stream')
+        .headers({
+          'content-disposition': `attachment; filename="${encodeURI('测试中文package.json')}"`
+        })
         .compress(fs.createReadStream(path.join(config.get('appPath'), 'package.json')))
     }
   })
@@ -98,7 +101,7 @@ export default (fastify, opts, next) => {
       const result = await categoryService.getCategories(fastify, params)
 
       const errMessages = {
-        notExists: `${moduleChName}不存在`
+        notExists: `${moduleCNName}不存在`
       }
 
       if (_.isPlainObject(result) && result.flag === false) {
@@ -127,7 +130,7 @@ export default (fastify, opts, next) => {
       const result = await categoryService.createCategory(fastify, params)
 
       const errMessages = {
-        parentNotExists: `上级${moduleChName}不存在`
+        parentNotExists: `上级${moduleCNName}不存在`
       }
 
       if (_.isPlainObject(result) && result.flag === false) {
@@ -159,8 +162,8 @@ export default (fastify, opts, next) => {
       const result = await categoryService.updateCategory(fastify, params)
 
       const errMessages = {
-        notExists: `${moduleChName}不存在`,
-        parentNotExists: `上级${moduleChName}不存在`
+        notExists: `${moduleCNName}不存在`,
+        parentNotExists: `上级${moduleCNName}不存在`
       }
 
       if (_.isPlainObject(result) && result.flag === false) {
@@ -186,7 +189,7 @@ export default (fastify, opts, next) => {
       const result = await categoryService.getCategoryById(fastify, params)
 
       const errMessages = {
-        notExists: `${moduleChName}不存在`
+        notExists: `${moduleCNName}不存在`
       }
 
       if (_.isPlainObject(result) && result.flag === false) {
