@@ -32,7 +32,6 @@
     "node": ">=4.0.0"
   },
   "dependencies": {
-    "ajv": "^6.0.1",
     "async": "2.3.0",
     "base64-img": "^1.0.3",
     "bcryptjs": "^2.4.3",
