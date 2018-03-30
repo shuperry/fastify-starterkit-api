@@ -101,8 +101,8 @@ class MailUtil {
         generageSeriesJobs(filteredReceivers)
       }
     } else if (_.isString(receiver)) {
-      if (!emailValidator.isValid(receiverItem)) {
-        wrong.push(receiverItem)
+      if (!emailValidator.isValid(receiver)) {
+        wrong.push(receiver)
         return
       } else {
         generageSeriesJobs(receiver)
