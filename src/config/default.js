@@ -64,7 +64,7 @@ export default {
         from: '华润电力移动门户项目组 <crp_mportal@crpower.com.cn>'
       },
       retry: {
-        enable: true,
+        enable: false,
         times: 3,
         interval: 50
       }
@@ -118,6 +118,6 @@ export default {
    */
   switches: {
     redis: false,
-    nodemailer: false
+    nodemailer: true
   }
 }
