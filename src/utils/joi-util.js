@@ -76,8 +76,6 @@ export default Joi.extend([
           sperator: Joi.string().required()
         },
         validate(params, value, state, options) {
-          // const _this = this
-
           const array = value
             .split(params.sperator)
             .map(sub_val => _.toNumber(sub_val))
