@@ -52,23 +52,19 @@ export default (fastify, opts, next) => {
       console.log('into upload file done with fastify.server.req.files =', JSON.stringify(fastify.server.req.files))
       console.log('into upload file done with fastify.server.req.body =', fastify.server.req.body)
 
-      return {
+      return reply.send({
         flag: 'success'
-      }
+      })
     }
   })
 
   fastify.get('/download-files', {
     schema: {
-      querystring: {
-        type: 'object',
-        properties: {
-          name: {
-            type: 'string'
-          }
-        }
-      }
+      querystring: Joi.object({
+        name: Joi.string().optional()
+      })
     },
+    schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: false }),
     handler: async (request, reply) => {
       reply
         .type('application/octet-stream')
