@@ -34,7 +34,7 @@ export default (fastify, opts, next) => {
         const schema = Joi.object({
           title: Joi.string().required(),
           files: Joi.object({
-            files: Joi.array().min(1).max(config.get('files:maxUploadCount')).required(),
+            files: Joi.array().min(1).max(config.get('files:maxUploadCount')).optional(),
             files2: Joi.array().min(1).max(config.get('files:maxUploadCount')).optional()
           })
         })
@@ -112,12 +112,12 @@ export default (fastify, opts, next) => {
 
   fastify.post('/categories', {
     schema: {
-      body: {
+      body: Joi.object({
         name: Joi.string().required(),
         code: Joi.string().allow('').optional(),
         rank: Joi.number().optional(),
         parent_id: Joi.number().integer().optional()
-      }
+      })
     },
     schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: false }),
     handler: async (request, reply) => {
@@ -141,15 +141,15 @@ export default (fastify, opts, next) => {
 
   fastify.patch('/categories/:category_id', {
     schema: {
-      params: {
+      params: Joi.object({
         category_id: Joi.number().integer().required()
-      },
-      body: {
+      }),
+      body: Joi.object({
         name: Joi.string().optional(),
         code: Joi.string().allow('').optional(),
         rank: Joi.number().optional(),
         parent_id: Joi.number().integer().optional()
-      }
+      })
     },
     schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: false }),
     handler: async (request, reply) => {
@@ -174,9 +174,9 @@ export default (fastify, opts, next) => {
 
   fastify.get('/categories/:category_id', {
     schema: {
-      params: {
+      params: Joi.object({
         category_id: Joi.number().integer().required()
-      }
+      })
     },
     schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: false }),
     handler: async (request, reply) => {
