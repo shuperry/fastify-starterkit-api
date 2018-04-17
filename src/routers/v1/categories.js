@@ -33,6 +33,9 @@ export default (fastify, opts, next) => {
 
         const schema = Joi.object({
           title: Joi.string().required(),
+          body: Joi.object({
+            item1: Joi.string().required()
+          }).required(),
           files: Joi.object({
             files: Joi.array().min(1).max(config.get('files:maxUploadCount')).optional(),
             files2: Joi.array().min(1).max(config.get('files:maxUploadCount')).optional()
