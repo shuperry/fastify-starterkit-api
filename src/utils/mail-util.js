@@ -26,7 +26,7 @@ class MailUtil {
    */
   async sendMail({receiver, subject, text, html, attachments}) {
     if (config.get('switches:nodemailer') === false) {
-      logger.warn('邮件服务已被关闭, 如要使用此服务, 需开启 switches:nodemailer 开关.')
+      logger.warn('nodemailer 邮件服务未开启, 如要使用此服务, 需开启 switches:nodemailer 开关.')
 
       return {
         rejected: receiver

@@ -7,7 +7,7 @@ const fastifyPlugin = (fastify, opts, next) => {
   logger.info('loading redis plugin with opts =', opts)
 
   if (config.get('switches:redis') === false) {
-    logger.warn('redis 服务已被关闭, 如要使用此服务, 需开启 switches:redis 开关.')
+    logger.warn('redis 服务未开启, 如要使用此服务, 需开启 switches:redis 开关.')
   }
 
   let client = null,
@@ -25,7 +25,7 @@ const fastifyPlugin = (fastify, opts, next) => {
   next()
 }
 
-async function __test() {
+async function _test() {
   logger.debug(await fastify.redis.store('category_', '1', {a: 'a', case_id: '1'}))
   logger.debug(await fastify.redis.store('category_', '2', {b: 'b', case_id: '2'}))
   logger.debug(await fastify.redis.get('category_', '2'))
