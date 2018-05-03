@@ -37,16 +37,16 @@ class CategoryHelper extends BaseHelper {
       where,
       params: [
         {
-          start_at: start_begin_time, end_at: end_begin_time, fieldName: 'begin_time'
+          start_at: start_begin_time, end_at: end_begin_time, field: 'begin_time'
         },
         {
-          start_at: start_finish_time, end_at: end_finish_time, fieldName: 'finish_time'
+          start_at: start_finish_time, end_at: end_finish_time, field: 'finish_time'
         },
         {
-          start_at: start_created_at, end_at: end_created_at, fieldName: 'created_at'
+          start_at: start_created_at, end_at: end_created_at, field: 'created_at'
         },
         {
-          start_at: start_updated_at, end_at: end_updated_at, fieldName: 'updated_at'
+          start_at: start_updated_at, end_at: end_updated_at, field: 'updated_at'
         }
       ]
     })

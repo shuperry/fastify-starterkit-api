@@ -41,7 +41,7 @@ class BaseHelper {
         start_at_operate: '$gte', // 查询开始时间时的条件, 支持 $gt ( > )、$gte ( >= )(默认).
         end_at: '1524844800001', // 需查询的结束时间.
         end_at_operate: '$lte', // 查询结束时间时的条件, 支持 $lt ( < )、$lte ( <= )(默认).
-        fieldName: 'created_at' // 需查询的字段.
+        field: 'created_at' // 需查询的字段.
       }
    * 以上例子生成的 sql 是: (`xx`.`created_at` >= '2018-04-28 00:00:00.000' AND `xx`.`created_at` <= '2018-04-28 00:00:00.001')
    */
@@ -49,19 +49,19 @@ class BaseHelper {
     params.forEach(v => {
       logger.info('into generateConditionForTimeFields with v =', v)
 
-      if (!v.fieldName) {
-        logger.warn('Missing fieldName for generateConditionForFilterRangeTimeFields function.')
+      if (!v.field) {
+        logger.warn('Missing field for generateConditionForFilterRangeTimeFields function.')
       }
 
       if (v.start_at || v.end_at) {
-        where[v.fieldName] = {}
+        where[v.field] = {}
 
         if (v.start_at) {
-          where[v.fieldName][v.start_at_operate || '$gte'] = v.start_at
+          where[v.field][v.start_at_operate || '$gte'] = v.start_at
         }
 
         if (v.end_at) {
-          where[v.fieldName][v.end_at_operate || '$lte'] = v.end_at
+          where[v.field][v.end_at_operate || '$lte'] = v.end_at
         }
       }
     })
