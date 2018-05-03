@@ -9,6 +9,10 @@ class CategoryService {
 
   }
 
+  async getMeetings(fastify, params) {
+    return await categoryHelper.getMeetings(fastify, params)
+  }
+
   async getCategories(fastify, params) {
     return await categoryHelper.getCategories(fastify, params)
   }

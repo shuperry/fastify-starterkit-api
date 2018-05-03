@@ -13,6 +13,11 @@ const upload = multer({dest: config.get('upload_path')})
 
 const moduleCNName = '通用类别'
 
+const errMessages = {
+  notExists: `${moduleCNName}不存在`,
+  parentNotExists: `上级${moduleCNName}不存在`
+}
+
 export default (fastify, opts, next) => {
   fastify.post('/files', {
     beforeHandler: [ // beforeHandler 函数只支持同步, 否则会出现提前进入 handler 函数的问题.
@@ -78,6 +83,56 @@ export default (fastify, opts, next) => {
     }
   })
 
+  fastify.get('/meetings', {
+    schema: {
+      querystring: Joi.object({
+        keyText: Joi.string().optional(),
+        meeting_member_sid: Joi.string().optional(),
+        wechat_dept_id: Joi.string().splited_integer('|').optional(),
+        name: Joi.string().optional(),
+        place: Joi.string().optional(),
+        description: Joi.string().optional(),
+        remark: Joi.string().optional(),
+
+        start_begin_time: Joi.date().timestamp().optional(),
+        end_begin_time: Joi.date().timestamp().optional(),
+
+        start_finish_time: Joi.date().timestamp().optional(),
+        end_finish_time: Joi.date().timestamp().optional(),
+
+        created_by: Joi.string().optional(),
+        updted_by: Joi.string().optional(),
+
+        start_created_at: Joi.date().timestamp().optional(),
+        end_created_at: Joi.date().timestamp().optional(),
+
+        start_updated_at: Joi.date().timestamp().optional(),
+        end_updated_at: Joi.date().timestamp().optional(),
+
+        enabled: Joi.number().integer().in([0, 1]).optional(),
+
+        offset: Joi.number().integer().greater(0).optional(),
+        limit: Joi.number().integer().greater(0).optional(),
+
+        needPage: Joi.string().in(['true', 'false']).optional()
+      })
+    },
+    schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: true }),
+    handler: async (request, reply) => {
+      const params = _.extend({}, request.params || {}, request.query || {})
+
+      const result = await categoryService.getMeetings(fastify, params)
+
+      if (_.isPlainObject(result) && result.flag === false) {
+        reply.code(400).send(new Error(result.error_msg || errMessages[result.error_code]))
+      } else {
+        reply.send({
+          result
+        })
+      }
+    }
+  })
+
   fastify.get('/categories', {
     schema: {
       querystring: Joi.object({
@@ -98,10 +153,6 @@ export default (fastify, opts, next) => {
       const params = _.extend({}, request.params || {}, request.query || {})
 
       const result = await categoryService.getCategories(fastify, params)
-
-      const errMessages = {
-        notExists: `${moduleCNName}不存在`
-      }
 
       if (_.isPlainObject(result) && result.flag === false) {
         reply.code(400).send(new Error(result.error_msg || errMessages[result.error_code]))
@@ -127,10 +178,6 @@ export default (fastify, opts, next) => {
       const params = _.extend({}, request.body || {})
 
       const result = await categoryService.createCategory(fastify, params)
-
-      const errMessages = {
-        parentNotExists: `上级${moduleCNName}不存在`
-      }
 
       if (_.isPlainObject(result) && result.flag === false) {
         reply.code(400).send(new Error(result.error_msg || errMessages[result.error_code]))
@@ -160,11 +207,6 @@ export default (fastify, opts, next) => {
 
       const result = await categoryService.updateCategory(fastify, params)
 
-      const errMessages = {
-        notExists: `${moduleCNName}不存在`,
-        parentNotExists: `上级${moduleCNName}不存在`
-      }
-
       if (_.isPlainObject(result) && result.flag === false) {
         reply.code(400).send(new Error(result.error_msg || errMessages[result.error_code]))
       } else {
@@ -186,10 +228,6 @@ export default (fastify, opts, next) => {
       const params = _.extend({}, request.params || {})
 
       const result = await categoryService.getCategoryById(fastify, params)
-
-      const errMessages = {
-        notExists: `${moduleCNName}不存在`
-      }
 
       if (_.isPlainObject(result) && result.flag === false) {
         reply.code(400).send(new Error(result.error_msg || errMessages[result.error_code]))
