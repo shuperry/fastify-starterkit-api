@@ -51,9 +51,7 @@ class BaseHelper {
 
       if (!v.field) {
         logger.warn('Missing field for generateConditionForFilterRangeTimeFields function.')
-      }
-
-      if (v.start_at || v.end_at) {
+      } else if (v.start_at || v.end_at) {
         where[v.field] = {}
 
         if (v.start_at) {
