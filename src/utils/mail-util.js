@@ -14,6 +14,7 @@ class MailUtil {
 
   /**
    * 发送邮件.
+   *
    * @param receiver<String/Array> 收件人 (支持字符串和字符串数组格式).
    * @param subject 主题.
    * @param text 文本格式邮件内容.
