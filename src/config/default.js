@@ -44,11 +44,11 @@ export default {
         // },
 
         // original smtp.
-        host: 'smtp.crc.com.hk',
+        host: 'xxx',
         port: 25,
         auth: {
-          user: 'crp_mportal',
-          pass: 'Run0102'
+          user: 'xxx',
+          pass: 'xxx'
         },
 
         tls: {
@@ -61,7 +61,7 @@ export default {
         // from: '舒培培 <576507045@qq.com>',
 
         // original smtp.
-        from: '华润电力移动门户项目组 <crp_mportal@crpower.com.cn>'
+        from: 'xxx'
       },
       retry: {
         enable: false,
