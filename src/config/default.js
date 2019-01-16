@@ -40,7 +40,7 @@ export default {
         // service: 'qq',
         // auth: {
         //   user: '576507045@qq.com',
-        //   pass: 'xxxxxx'
+        //   pass: 'xxx'
         // },
 
         // original smtp.

@@ -1,6 +1,6 @@
 export default {
   name: 'fastify-starterkit-api[DEV]',
-  port: 8001,
+  port: 8002,
   log: {
     level: 'debug'
   },
@@ -17,7 +17,7 @@ export default {
         family: '4',
         db: 3,
         showFriendlyErrorStack: true,
-        password: 'crP@ssw0rd'
+        password: 'xxx'
       }
     },
     jwt: {

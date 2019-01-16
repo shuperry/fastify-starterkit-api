@@ -28,7 +28,7 @@ class RouterUtil {
             fastify.server.req.body[key] = null
           } else {
             /**
-             * 1.此方法可以处理类 array 的字符串, eg: '["ab", 2, "cd"]'.
+             * 1.此方法可以处理类 array 的字符串, e.g: '["ab", 2, "cd"]'.
              * 2.其它不能被 json.parse 成功的字符串直接使用原值.
              */
             try {
