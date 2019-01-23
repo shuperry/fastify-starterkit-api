@@ -32,7 +32,7 @@ export default async (fastify) => {
 
   // logger.info('领创盛世短信发送记录: 号码个数【', mobiles.length, '】, 短信内容【', content, '】')
 
-  // await LCSSSmsUtil.sendMail({
+  // await LCSSSmsUtil.sendSMS({
   //   mobiles,
   //   content
   // })

@@ -6,7 +6,7 @@ class LCSSSmsUtil {
 
   }
 
-  static async sendMail({mobiles = [], content = '谢谢。'}) {
+  static async sendSMS({mobiles = [], content = '谢谢。'}) {
     RequestUtil.sendRequest({
       host: config.get('sms:lcss:host'),
       url: config.get('sms:lcss:url'),
