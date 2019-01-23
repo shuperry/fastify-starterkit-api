@@ -26,14 +26,6 @@ class MailUtil {
    * @returnParam wrong 格式不正确的邮件地址.
    */
   async sendMail({receiver, subject, text, html, attachments}) {
-    if (config.get('switches:nodemailer') === false) {
-      logger.warn('nodemailer 邮件服务未开启, 如要使用此服务, 需开启 switches:nodemailer 开关.')
-
-      return {
-        rejected: receiver
-      }
-    }
-
     const seriesJobs = []
     const successful = [], failed = [], wrong = []
 

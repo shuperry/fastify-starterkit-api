@@ -4,7 +4,7 @@ import loadMiddlewares from './load-middlewares'
 import loadHooks from './load-hooks'
 import loadPlugins from './load-plugins'
 import loadRouters from './load-routers'
-import cacheStaticData from './cache-static-data'
+// import cacheStaticData from './cache-static-data'
 import testSth from './test-sth'
 
 import config from '../config'
@@ -48,7 +48,7 @@ fastify.listen(port, '0.0.0.0', async (err) => {
 
   logger.info(`You can also visit server at http://${ip.address()}:${port}`)
 
-  await cacheStaticData(fastify)
+  // await cacheStaticData(fastify)
 
   await testSth(fastify)
 })

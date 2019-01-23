@@ -17,9 +17,9 @@
 
 1. Clone this repo using `git clone https://github.com/shuperry/fastify-starterkit-api.git`.
 2. Run `npm install` or `yarn` to install dependencies.
-3. Run `npm i pm2 pino -g` to install global dependencies.
+3. Run `npm i pm2 pino pino-pretty -g` to install global dependencies.
 4. Run `npm start` to start service in local development mode.
-5. Run `pm2 logs --raw fastify-starterkit-api-local | pino -L` to see logs in local development mode.
+5. Run `pm2 logs --raw fastify-starterkit-api-local | pino-pretty -c -f` to see logs in local development mode.
 
 ## Configuration
 

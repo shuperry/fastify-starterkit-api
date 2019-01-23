@@ -7,6 +7,7 @@ import multer from 'multer'
 import categoryService from '../../services/category-service'
 
 import Joi from '../../utils/joi-util'
+import requestUtil from '../../utils/request-util'
 import RouterUtil from '../../utils/router-util'
 
 const upload = multer({dest: config.get('upload_path')})
@@ -19,6 +20,37 @@ const errMessages = {
 }
 
 export default (fastify, opts, next) => {
+  fastify.get('/test-request', {
+    schema: {
+      querystring: Joi.object({
+      })
+    },
+    schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: true }),
+    handler: async (request, reply) => {
+      await requestUtil.sendRequest({
+        // host: '119.27.184.157',
+        port: 8911,
+        url: '/mail/send',
+        method: 'post',
+        multipart: true,
+        params: {
+          attachments: [
+            fs.createReadStream('/Users/shupeipei/DeskTop/test1.xlsx'),
+            fs.createReadStream('/Users/shupeipei/DeskTop/test2.xlsx'),
+            // more file.
+          ],
+          to: '576507045@qq.com; cn.shshupeipei@gmail.com',
+          subject: '测试sendCloud发送邮件',
+          html: '你好:<br/>&nbsp;&nbsp;&nbsp;&nbsp;这是用sendCloud发送的邮件。',
+        }
+      })
+
+      return reply.send({
+        flag: 'success'
+      })
+    }
+  })
+
   fastify.post('/files', {
     beforeHandler: [ // beforeHandler 函数只支持同步, 否则会出现提前进入 handler 函数的问题.
       (request, reply, next) => { // 上传文件.

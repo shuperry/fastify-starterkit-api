@@ -118,6 +118,7 @@ export default {
    */
   switches: {
     redis: false,
-    nodemailer: true
+    sequelize: false,
+    nodemailer: false
   }
 }

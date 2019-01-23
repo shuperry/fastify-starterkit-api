@@ -5,7 +5,7 @@ class BaseHelper {
 
   }
 
-  generateConditionForKeyText({where = {}, attributes = [], keyText}) {
+  genKeyTextFilters({where = {}, attributes = [], keyText}) {
     if (keyText) {
       const or = []
       let condition
@@ -19,13 +19,13 @@ class BaseHelper {
     }
   }
 
-  generateConditionForFuzzyLike({where, params = {}}) {
+  genFuzzyLikeFilers({where, params = {}}) {
     _.keys(params).forEach(key => {
       if (params[key]) where[key] = {$like: `%${params[key]}%`}
     })
   }
 
-  generateConditionForEqual({where, params = {}}) {
+  genEqualFilters({where, params = {}}) {
     _.keys(params).forEach(key => {
       if (params[key]) where[key] = params[key]
     })
@@ -45,7 +45,7 @@ class BaseHelper {
       }
    * 以上例子生成的 sql 是: (`xx`.`created_at` >= '2018-04-28 00:00:00.000' AND `xx`.`created_at` <= '2018-04-28 00:00:00.001')
    */
-  generateConditionForFilterRangeTimeFields({where, params = []}) {
+  genRangeTimeFilters({where, params = []}) {
     params.forEach(v => {
       logger.info('into generateConditionForTimeFields with v =', v)
 

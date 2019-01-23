@@ -19,6 +19,14 @@ class StringUtil {
   static isNotBlank(sth) {
     return !_.isEmpty(_.toString(sth))
   }
+
+  static isTrue(sth) {
+    return _.eq(sth, true) || _.eq(sth, 1) || (_.isString(sth) && _.eq(_.toLower(sth), 'true'))
+  }
+
+  static isFalse(sth) {
+    return !StringUtil.isTrue(sth)
+  }
 }
 
 export default StringUtil

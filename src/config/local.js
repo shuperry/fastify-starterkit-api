@@ -4,7 +4,7 @@ export default {
   log: {
     level: 'debug'
   },
-  upload_path: '/Users/perry/crpower-workspace/testUpload/',
+  upload_path: '/Users/shupeipei/crpower-workspace/testUpload/',
 
   plugin: {
     redis: {

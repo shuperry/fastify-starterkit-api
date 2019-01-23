@@ -6,7 +6,7 @@ import categoryHelper from '../helpers/category-helper'
 
 class CategoryService {
   constructor() {
-
+    this.redisKeyPrefix = 'category_'
   }
 
   async getMeetings(fastify, params) {
@@ -34,7 +34,7 @@ class CategoryService {
 
     StoreGlobalDataUtil.storeGloabalCategories(fastify)
 
-    fastify.redis.store('category_', category.category_id, category)
+    fastify.redis.store(this.redisKeyPrefix, category.category_id, category)
 
     return category
   }
@@ -42,10 +42,10 @@ class CategoryService {
   async getCategoryById(fastify, params) {
     const {category_id} = params
 
-    const category = await fastify.redis.get('category_', category_id) || await categoryHelper.getCategoryById(fastify, {category_id})
+    const category = await fastify.redis.get(this.redisKeyPrefix, category_id) || await categoryHelper.getCategoryById(fastify, {category_id})
 
     if (!!category) {
-      fastify.redis.store('category_', category.category_id, category)
+      fastify.redis.store(this.redisKeyPrefix, category.category_id, category)
 
       return category
     }
@@ -80,7 +80,7 @@ class CategoryService {
 
       StoreGlobalDataUtil.storeGloabalCategories(fastify)
 
-      fastify.redis.store('category_', category.category_id, category)
+      fastify.redis.store(this.redisKeyPrefix, category.category_id, category)
 
       return category
     }

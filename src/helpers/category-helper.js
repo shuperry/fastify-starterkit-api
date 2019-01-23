@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
 import BaseHelper from './common/base-helper'
+import StringUtil from "../utils/string-util"
 
 class CategoryHelper extends BaseHelper {
   async getMeetings(fastify, {
@@ -11,7 +12,7 @@ class CategoryHelper extends BaseHelper {
 
     const where = {}
 
-    this.generateConditionForKeyText({
+    this.genKeyTextFilters({
       where,
       attributes: [
         'name', 'place', 'description', 'remark'
@@ -19,21 +20,21 @@ class CategoryHelper extends BaseHelper {
       keyText
     })
 
-    this.generateConditionForEqual({
+    this.genEqualFilters({
       where,
       params: {
         enabled, created_by, updated_by
       }
     })
 
-    this.generateConditionForFuzzyLike({
+    this.genFuzzyLikeFilers({
       where,
       params: {
         name, place, description, remark
       }
     })
 
-    this.generateConditionForFilterRangeTimeFields({
+    this.genRangeTimeFilters({
       where,
       params: [
         {
@@ -62,18 +63,8 @@ class CategoryHelper extends BaseHelper {
       })
     }
 
-    if (!_.isBoolean(needPage) && _.isString(needPage)) {
-      switch (needPage) {
-        case 'true':
-          needPage = true
-          break
-        case 'false':
-          needPage = false
-      }
-    }
-
     const pagination = {}
-    if (needPage) {
+    if (StringUtil.isTrue(needPage)) {
       pagination.offset = parseInt(offset)
       pagination.limit = parseInt(limit)
     }
