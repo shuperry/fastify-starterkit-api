@@ -120,5 +120,16 @@ export default {
     redis: false,
     sequelize: false,
     nodemailer: false
+  },
+  sms: {
+    lcss: {
+      host: 'api.lingchuangyun.cn',
+      url: '/send',
+      params: {
+        appid: '31262403f0135019',
+        secret: '24f643a8ecd5db020bbd502d75f17776',
+        genre: '4', // 发送短信类型id 1-验证码, 2-行业类, 3-营销类, 4-四大类
+      }
+    }
   }
 }

@@ -8,26 +8,33 @@ class RedisUtil {
 
   async set(keyPrefix = '', key, objVal) {
     if (this.redisClient) {
-      const res = await this.redisClient.set(this.app_key_prefix + keyPrefix + _.toString(key), JSON.stringify(objVal))
+      const storedKey = this.app_key_prefix + keyPrefix + _.toString(key)
+      const res = await this.redisClient.set(storedKey, JSON.stringify(objVal))
+
+      logger.info('storing to redis with key =', storedKey, 'data =', JSON.stringify(objVal))
+
       return res === 'OK' ? 'OK' : 'wrong'
     }
   }
 
   async store(keyPrefix = '', key, objVal) {
     if (this.redisClient) {
-      const res = await this.redisClient.set(this.app_key_prefix + keyPrefix + _.toString(key), JSON.stringify(objVal))
-      return res === 'OK' ? 'OK' : 'wrong'
+      return await this.set(keyPrefix, key, objVal)
     }
   }
 
   async get(keyPrefix = '', key) {
     if (this.redisClient) {
+      const storedKey = this.app_key_prefix + keyPrefix + _.toString(key)
       let res
       try {
-        res = JSON.parse(await this.redisClient.get(this.app_key_prefix + keyPrefix + _.toString(key)))
+        res = JSON.parse(await this.redisClient.get(storedKey))
       } catch (e) {
-        res = await this.redisClient.get(this.app_key_prefix + keyPrefix + _.toString(key))
+        res = await this.redisClient.get(storedKey)
       }
+
+      logger.info('geting from redis with key =', storedKey, ' res =', res)
+
       return res
     }
 
@@ -37,12 +44,19 @@ class RedisUtil {
   async multiGet(keyPrefix = '', keys = []) {
     if (this.redisClient) {
       const multiGetArr = [], results = []
+      let storedKey
 
       if (_.isArray(keys)) {
-        keys.forEach(key => multiGetArr.push([
-          'get',
-          this.app_key_prefix + keyPrefix + _.toString(key)
-        ]))
+        keys.forEach(key => {
+          storedKey = this.app_key_prefix + keyPrefix + _.toString(key)
+          multiGetArr.push([
+            'get',
+            this.app_key_prefix + keyPrefix + _.toString(key)
+          ])
+
+          logger.info('before deleting from redis with key =', storedKey)
+
+        })
 
         const vals = await this.redisClient.pipeline(multiGetArr).exec()
         vals.forEach(valArr => {
@@ -62,7 +76,11 @@ class RedisUtil {
 
   async del(keyPrefix = '', key) {
     if (this.redisClient) {
-      const res = await this.redisClient.del(this.app_key_prefix + keyPrefix + _.toString(key))
+      const storedKey = this.app_key_prefix + keyPrefix + _.toString(key)
+      const res = await this.redisClient.del(storedKey)
+
+      logger.info('deleting from redis with key =', storedKey)
+
       return res === 0 ? 'OK' : 'wrong'
     }
   }
@@ -70,12 +88,18 @@ class RedisUtil {
   async batchDel(keyPrefix = '', keys = []) {
     if (this.redisClient) {
       const multiDelArr = []
+      let storedKey
 
       if (_.isArray(keys)) {
-        keys.forEach(key => multiDelArr.push([
-          'del',
-          this.app_key_prefix + keyPrefix + _.toString(key)
-        ]))
+        keys.forEach(key => {
+          storedKey = this.app_key_prefix + keyPrefix + _.toString(key)
+          multiDelArr.push([
+            'del',
+            storedKey
+          ])
+
+          logger.info('before deleting from redis with key =', storedKey)
+        })
 
         await this.redisClient.pipeline(multiDelArr).exec()
       }
