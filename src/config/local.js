@@ -15,7 +15,7 @@ export default {
       options: {
         connectionName: 'fastify-starterkit-api-redis-local',
         family: '4',
-        db: 3,
+        db: 0,
         showFriendlyErrorStack: true,
         password: 'xxx'
       }

@@ -21,12 +21,14 @@ const fastifyPlugin = (fastify, opts, next) => {
   next()
 }
 
-async function _test() {
-  logger.debug(await fastify.redis.store('category_', '1', {a: 'a', case_id: '1'}))
-  logger.debug(await fastify.redis.store('category_', '2', {b: 'b', case_id: '2'}))
-  logger.debug(await fastify.redis.get('category_', '2'))
-  logger.debug(await fastify.redis.multiGet('category_', ['2', '3']))
-  logger.debug(await fastify.redis.del('category_', '41415'))
+const testRedis = async (fastify) => {
+  logger.debug(await fastify.redis.store({keyPrefix: 'case_', key: '1', objVal: {a: 'a', case_id: '1'}}))
+  logger.debug(await fastify.redis.store({keyPrefix: 'case_', key: '2', objVal: {b: 'b', case_id: '2'}}))
+  logger.debug(await fastify.redis.get({keyPrefix: 'case_', key: '2'}))
+  logger.debug(await fastify.redis.multiGet({keyPrefix: 'case_', key: ['2', '3']}))
+  logger.debug(await fastify.redis.del({keyPrefix: 'case_', key: '41415'}))
+
+  // await fastify.redis.flushall()
 }
 
 module.exports = fp(fastifyPlugin, {

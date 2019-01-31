@@ -34,7 +34,11 @@ class CategoryService {
 
     StoreGlobalDataUtil.storeGloabalCategories(fastify)
 
-    fastify.redis.store(this.redisKeyPrefix, category.category_id, category)
+    fastify.redis.store({
+      keyPrefix: this.redisKeyPrefix,
+      key: category.category_id,
+      objVal: category
+    })
 
     return category
   }
@@ -42,10 +46,14 @@ class CategoryService {
   async getCategoryById(fastify, params) {
     const {category_id} = params
 
-    const category = await fastify.redis.get(this.redisKeyPrefix, category_id) || await categoryHelper.getCategoryById(fastify, {category_id})
+    const category = await fastify.redis.get({keyPrefix: this.redisKeyPrefix, key: category_id}) || await categoryHelper.getCategoryById(fastify, {category_id})
 
     if (!!category) {
-      fastify.redis.store(this.redisKeyPrefix, category.category_id, category)
+      fastify.redis.store({
+        keyPrefix: this.redisKeyPrefix,
+        key: category.category_id,
+        objVal: category
+      })
 
       return category
     }
@@ -80,7 +88,11 @@ class CategoryService {
 
       StoreGlobalDataUtil.storeGloabalCategories(fastify)
 
-      fastify.redis.store(this.redisKeyPrefix, category.category_id, category)
+      fastify.redis.store({
+        keyPrefix: this.redisKeyPrefix,
+        key: category.category_id,
+        objVal: category
+      })
 
       return category
     }

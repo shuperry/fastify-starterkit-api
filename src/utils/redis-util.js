@@ -6,7 +6,7 @@ class RedisUtil {
     this.app_key_prefix = config.get('plugin:redis:key_prefix')
   }
 
-  async set(keyPrefix = '', key, objVal) {
+  async set({keyPrefix = '', key, objVal}) {
     if (this.redisClient) {
       const storedKey = this.app_key_prefix + keyPrefix + _.toString(key)
       const res = await this.redisClient.set(storedKey, JSON.stringify(objVal))
@@ -17,13 +17,13 @@ class RedisUtil {
     }
   }
 
-  async store(keyPrefix = '', key, objVal) {
+  async store({keyPrefix = '', key, objVal}) {
     if (this.redisClient) {
-      return await this.set(keyPrefix, key, objVal)
+      return await this.set({keyPrefix, key, objVal})
     }
   }
 
-  async get(keyPrefix = '', key) {
+  async get({keyPrefix = '', key}) {
     if (this.redisClient) {
       const storedKey = this.app_key_prefix + keyPrefix + _.toString(key)
       let res
@@ -41,7 +41,7 @@ class RedisUtil {
     return null
   }
 
-  async multiGet(keyPrefix = '', keys = []) {
+  async multiGet({keyPrefix = '', keys = []}) {
     if (this.redisClient) {
       const multiGetArr = [], results = []
       let storedKey
@@ -74,7 +74,7 @@ class RedisUtil {
     return null
   }
 
-  async del(keyPrefix = '', key) {
+  async del({keyPrefix = '', key}) {
     if (this.redisClient) {
       const storedKey = this.app_key_prefix + keyPrefix + _.toString(key)
       const res = await this.redisClient.del(storedKey)
@@ -85,7 +85,7 @@ class RedisUtil {
     }
   }
 
-  async batchDel(keyPrefix = '', keys = []) {
+  async batchDel({keyPrefix = '', keys = []}) {
     if (this.redisClient) {
       const multiDelArr = []
       let storedKey
@@ -109,6 +109,12 @@ class RedisUtil {
   async flushdb() {
     if (this.redisClient) {
       await this.redisClient.flushdb()
+    }
+  }
+
+  async flushall() {
+    if (this.redisClient) {
+      await this.redisClient.flushall()
     }
   }
 }

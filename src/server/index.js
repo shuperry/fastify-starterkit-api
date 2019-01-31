@@ -50,5 +50,5 @@ fastify.listen(port, '0.0.0.0', async (err) => {
 
   // await cacheStaticData(fastify)
 
-  await testSth(fastify)
+  // await testSth(fastify)
 })
