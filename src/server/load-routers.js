@@ -3,9 +3,10 @@ import path from 'path'
 import fsPlus from 'fs-plus'
 
 export default (fastify) => {
+  const versionedRouters = config.get('routers:versions')
   let router_path
 
-  config.get('routers:versions').forEach(versioned_router => {
+  versionedRouters.forEach(versioned_router => {
     router_path = path.join(__dirname, '..', 'routers', versioned_router.root_folder)
 
     if (versioned_router.enable) {

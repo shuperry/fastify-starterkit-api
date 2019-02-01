@@ -3,19 +3,21 @@ export default {
   log: {
     level: 'debug'
   },
-  routers: {
-    base_prefix: '/api',
-    versions: [
-      {
-        enable: true,
-        root_folder: 'v1',
-        prefix: '/v1',
-        logLevel: 'debug'
-      }
-    ]
-  },
-  middleware: {
-  },
+
+  plugins: [
+    'accepts',
+    'jwt',
+    'response-time',
+    'formbody',
+    'redis',
+    'sequelize',
+    'nodemailer',
+    'compress',
+    'favicon',
+    // 'mongoose',
+    // 'static-server',
+    // 'knexjs'
+  ],
   plugin: {
     sequelize: {
       database: 'fastify-starterkit-api',
@@ -74,6 +76,30 @@ export default {
     }
   },
 
+  routers: {
+    base_prefix: '/api',
+    versions: [
+      {
+        enable: true,
+        root_folder: 'v1',
+        prefix: '/v1',
+        logLevel: 'debug'
+      }
+    ]
+  },
+
+  middlewares: [
+    'cors',
+    'dns-prefetch-control',
+    'frameguard',
+    'hide-powered-by',
+    'hsts',
+    'ienoopen',
+    'x-xss-protection'
+  ],
+  middleware: {
+  },
+
   /**
    * 注: 如果 method 配置缺失, 则默认为此地址前缀的所有方法的请求都会被纳入检查范围内.
      e.g:
@@ -117,9 +143,14 @@ export default {
    * @description 如果某项服务开关设置为 false, 在公用工具处此项服务不会生效, 并且会有警告日志.
    */
   switches: {
-    redis: false,
-    sequelize: false,
-    nodemailer: false
+    plugin: {
+      redis: false,
+      sequelize: false,
+      nodemailer: false
+    },
+    middleware: {
+
+    }
   },
   sms: {
     lcss: {
