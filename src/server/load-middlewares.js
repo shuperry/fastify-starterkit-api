@@ -4,7 +4,7 @@ export default (fastify) => {
   middlewares.forEach(middleware => {
     logger.info('loading middleware:', middleware)
 
-    if (config.get(`switches:middleware:${middleware}`) === false) {
+    if (config.get(`switches:middleware:${middleware}`) === false) { // 未配置开关默认开启服务.
       logger.warn(middleware, `服务未开启, 如要使用此服务, 请开启 switches:middleware:${middleware} 开关.`)
     } else {
       fastify.use(require(middleware)(config.get(`middleware:${middleware}`)))
