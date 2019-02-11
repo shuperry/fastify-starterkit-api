@@ -33,7 +33,7 @@ class RedisUtil {
         res = await this.redisClient.get(storedKey)
       }
 
-      logger.info('geting from redis with key =', storedKey, ' res =', res)
+      logger.info('getting from redis with key =', storedKey, ' res =', res)
 
       return res
     }
@@ -104,6 +104,10 @@ class RedisUtil {
         await this.redisClient.pipeline(multiDelArr).exec()
       }
     }
+  }
+
+  getInstance() {
+    return this.redisClient
   }
 
   async flushdb() {
