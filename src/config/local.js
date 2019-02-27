@@ -1,6 +1,6 @@
 export default {
   name: 'fastify-starterkit-api[DEV]',
-  port: 8002,
+  port: 8001,
   log: {
     level: 'debug'
   },
@@ -31,7 +31,7 @@ export default {
     sequelize: {
       database: 'fastify-starterkit-api',
       username: 'root',
-      password: 'mysecretpassword',
+      password: 'Root123!@',
       options: {
         host: '127.0.0.1',
         port: 3306,

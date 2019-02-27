@@ -22,8 +22,7 @@ const errMessages = {
 export default (fastify, opts, next) => {
   fastify.get('/test-request', {
     schema: {
-      querystring: Joi.object({
-      })
+      description: '测试发送请求'
     },
     schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: true }),
     handler: async (request, reply) => {

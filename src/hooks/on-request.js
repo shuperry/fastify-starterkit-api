@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 module.exports = (fastify) => {
   fastify.addHook('onRequest', (req, res, next) => {
     logger.info('into onRequest hook')
@@ -5,6 +7,8 @@ module.exports = (fastify) => {
     fastify.server.req = req
     fastify.server.res = res
 
-    next()
+    if (next && _.isFunction(next)) {
+      next()
+    }
   })
 }

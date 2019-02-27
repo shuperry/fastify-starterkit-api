@@ -1,4 +1,6 @@
-import path from "path"
+import path from 'path'
+
+import convert from 'joi-to-json-schema'
 
 export default {
   name: 'fastify-starterkit-api[DEV]',
@@ -7,9 +9,9 @@ export default {
   },
 
   plugins: [
-    'accepts',
+    'swagger',
     'jwt',
-    'response-time',
+    // 'response-time',
     'formbody',
     'redis',
     'sequelize',
@@ -90,7 +92,25 @@ export default {
     },
     static: {
       root: path.join(__dirname, '..', 'static'),
-      prefix: '/static/', // optional: default '/'.
+      prefix: '/static/' // optional, default: '/'.
+    },
+    swagger: {
+      routePrefix: '/doc',
+      exposeRoute: true,
+      swagger: {
+        consumes: ['application/json'],
+        produces: ['application/json'],
+        info: {
+          title: 'Swagger API',
+          version: '1.0.0'
+        }
+      },
+      transform(schema = {}) {
+        return Object.keys(schema).reduce((o, key) => {
+          o[key] = ['params', 'body', 'querystring'].includes(key) && schema[key].isJoi ? convert(schema[key]) : schema[key]
+          return o
+        }, {})
+      }
     }
   },
 
@@ -115,20 +135,33 @@ export default {
     'ienoopen',
     'x-xss-protection'
   ],
-  middleware: {
-  },
+
+  /***
+   * 注: 每一个 middleware 的配置项.
+   e.g:
+
+   middleware: {
+     cors: {
+       origin: '*', // also support array, e.g: ["http://example1.com", /\.example2\.com$/].
+       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+       preflightContinue: false,
+       optionsSuccessStatus: 204
+     }
+   }
+   */
+  middleware: {},
 
   /**
    * 注: 如果 method 配置缺失, 则默认为此地址前缀的所有方法的请求都会被纳入检查范围内.
-     e.g:
-     '/api/v1/categories'
+   e.g:
+   '/api/v1/categories'
 
-     or
+   or
 
-     {
-       path: '/api/v1/categories',
-       method: 'get'
-     }
+   {
+     path: '/api/v1/categories',
+     method: 'get'
+   }
    */
   auth: {
     /**
@@ -161,14 +194,17 @@ export default {
    * @description 如果某项服务开关设置为 false, 在公用工具处此项服务不会生效, 并且会有警告日志.
    */
   switches: {
+    loadPlugins: true,
+    loadRouters: true,
     plugin: {
-      redis: false,
-      sequelize: false,
-      nodemailer: false
+      redis: true,
+      sequelize: true,
+      nodemailer: false,
+      mongoose: false,
+      static: false,
+      swagger: true
     },
-    middleware: {
-
-    }
+    middleware: {}
   },
   sms: {
     lcss: {
@@ -177,7 +213,7 @@ export default {
       params: {
         appid: '31262403f0135019',
         secret: '24f643a8ecd5db020bbd502d75f17776',
-        genre: '4', // 发送短信类型id 1-验证码, 2-行业类, 3-营销类, 4-四大类
+        genre: '4' // 发送短信类型id 1-验证码, 2-行业类, 3-营销类, 4-四大类
       }
     }
   }

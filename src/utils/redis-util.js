@@ -33,7 +33,7 @@ class RedisUtil {
         res = await this.redisClient.get(storedKey)
       }
 
-      logger.info('getting from redis with key =', storedKey, ' res =', res)
+      logger.info('getting from redis with key =', storedKey, 'res =', res)
 
       return res
     }

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import moment from 'moment'
 
 module.exports = (fastify) => {
@@ -17,6 +18,8 @@ module.exports = (fastify) => {
       )
     }
 
-    next()
+    if (next && _.isFunction(next)) {
+      next()
+    }
   })
 }

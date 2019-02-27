@@ -1,9 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import fp from 'fastify-plugin'
-
-const fastifyPlugin = (fastify, opts, next) => {
+module.exports = (fastify, opts, next) => {
   logger.info('loading favicon plugin with opts =', opts)
 
   fastify.get('/favicon.ico', {
@@ -15,8 +13,3 @@ const fastifyPlugin = (fastify, opts, next) => {
 
   next()
 }
-
-module.exports = fp(fastifyPlugin, {
-  fastify: '>=0.39',
-  name: 'fastify-favicon'
-})

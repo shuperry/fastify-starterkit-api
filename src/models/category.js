@@ -58,13 +58,13 @@ export default (sequelize, DataTypes) => {
     }
   }, {
     timestamps: false,
-    tableName: 'CRP_CATEGORY',
+    tableName: 'WISE_CATEGORY',
     comment: '通用类别, 树形结构, parent_id 字段自关联.',
     hierarchy: {
       levelFieldName: 'level',
       foreignKey: 'parent_id',
       foreignKeyAttributes: 'parent',
-      throughTable: 'CRP_CATEGORY_ANCETORS',
+      throughTable: 'WISE_CATEGORY_ANCETORS',
       throughKey: 'category_id',
       throughForeignKey: 'parent_category_id'
     },

@@ -34,7 +34,7 @@ export default {
       options: {
         // expiresIn: '1d', // e.g: 1d, 1h, 5 (second)
 
-        expiresIn: 5 // second.
+        expiresIn: 30 // second.
       }
     },
     sequelize: {

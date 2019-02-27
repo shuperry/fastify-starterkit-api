@@ -8,7 +8,7 @@ class CategoryHelper extends BaseHelper {
     keyText, enabled, wechat_dept_id, name, place, description, remark, meeting_checkin_unit_id, start_begin_time, end_begin_time, start_finish_time, end_finish_time, created_by, updated_by, start_created_at, end_created_at, start_updated_at, end_updated_at, offset = 0, limit = config.get(
       'page:limit'), needPage = true
   }) {
-    const {models} = fastify.sequelize
+    const {models} = sequelize
 
     const where = {}
 
@@ -96,7 +96,7 @@ class CategoryHelper extends BaseHelper {
       order_sql.join('')
     ].join('')
 
-    const include_rows = (await fastify.sequelize.query(sql, {type: fastify.sequelize.QueryTypes.SELECT}))
+    const include_rows = (await sequelize.query(sql, {type: sequelize.QueryTypes.SELECT}))
 
     const include_meeting_ids = []
     include_rows.forEach(row => include_meeting_ids.push(row.meeting_id))
@@ -125,7 +125,7 @@ class CategoryHelper extends BaseHelper {
   }
 
   async getCategories(fastify, {keyText, name, code, parent_id, category_id}) {
-    const {models} = fastify.sequelize
+    const {models} = sequelize
 
     let categories
     if (!_.isUndefined(parent_id)) {
@@ -253,7 +253,7 @@ class CategoryHelper extends BaseHelper {
   }
 
   async getSimpleCategories(fastify, params) {
-    const {models} = fastify.sequelize
+    const {models} = sequelize
 
     const {code, parent_id, level, category_id} = params
 
@@ -276,7 +276,7 @@ class CategoryHelper extends BaseHelper {
   }
 
   async getCategoryById(fastify, {category_id}) {
-    const {models} = fastify.sequelize
+    const {models} = sequelize
 
     const where = {category_id}
 
@@ -307,7 +307,7 @@ class CategoryHelper extends BaseHelper {
   }
 
   async createCategory(fastify, params) {
-    const {models} = fastify.sequelize
+    const {models} = sequelize
 
     const category = await models.Category.create(params)
 

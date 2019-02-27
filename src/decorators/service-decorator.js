@@ -10,7 +10,7 @@ export const transaction = (target, key, descriptor) => {
   }
 
   descriptor.value = async (...args) => {
-    return fastify.sequelize.transaction(async t1 => {
+    return sequelize.transaction(async t1 => {
       return await fn.apply(target, args)
     })
   }

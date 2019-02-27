@@ -186,6 +186,8 @@ module.exports = (fastify) => {
 
     fastify.server.request = request
 
-    next()
+    if (next && _.isFunction(next)) {
+      next()
+    }
   })
 }

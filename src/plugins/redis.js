@@ -1,9 +1,8 @@
-import fp from 'fastify-plugin'
 import Redis from 'ioredis'
 
 import RedisUtil from '../utils/redis-util'
 
-const fastifyPlugin = (fastify, opts, next) => {
+module.exports = (fastify, opts, next) => {
   logger.info('loading redis plugin with opts =', opts)
 
   let client = null,
@@ -30,8 +29,3 @@ const testRedis = async (fastify) => {
 
   // await fastify.redis.flushall()
 }
-
-module.exports = fp(fastifyPlugin, {
-  fastify: '>=0.39',
-  name: 'fastify-redis'
-})
