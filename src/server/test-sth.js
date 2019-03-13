@@ -249,7 +249,7 @@ export default async (fastify) => {
 
   // await requestUtil.sendRequest({
   //   port: 8911,
-  //   url: '/mail/send',
+  //   path: '/mail/send',
   //   method: 'post',
   //   multipart: true,
   //   params: {

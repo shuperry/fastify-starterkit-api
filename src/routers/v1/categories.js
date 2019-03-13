@@ -3,6 +3,7 @@ import path from 'path'
 
 import _ from 'lodash'
 import multer from 'multer'
+import moment from 'moment'
 
 import categoryService from '../../services/category-service'
 
@@ -20,38 +21,49 @@ const errMessages = {
 }
 
 export default (fastify, opts, next) => {
-  fastify.get('/test-request', {
+  fastify.post('/test-check-name-request', {
     schema: {
-      description: '测试发送请求'
+      description: '测试请求'
     },
     schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: true }),
     handler: async (request, reply) => {
-      await requestUtil.sendRequest({
-        // host: '119.27.184.157',
-        port: 8911,
-        url: '/mail/send',
+      const params = _.merge({}, request.query || {}, {timestamp: moment().valueOf()})
+
+      const res = await requestUtil.sendRequest({
+        port: 8001,
+        path: '/api/v1/check-real/name',
         method: 'post',
-        multipart: true,
-        params: {
-          attachments: [
-            fs.createReadStream('/Users/shupeipei/DeskTop/test1.xlsx'),
-            fs.createReadStream('/Users/shupeipei/DeskTop/test2.xlsx'),
-            // more file.
-          ],
-          to: '576507045@qq.com; cn.shshupeipei@gmail.com',
-          subject: '测试sendCloud发送邮件',
-          html: '你好:<br/>&nbsp;&nbsp;&nbsp;&nbsp;这是用sendCloud发送的邮件。',
-        }
+        params: _.merge({}, params, {sign: requestUtil.getSignature(params, 'xtuwmza5jlsb1ky4dg760rhvqp8nce2o')})
       })
 
-      return reply.send({
-        flag: 'success'
+      return reply.send(res.body)
+    }
+  })
+
+  fastify.post('/test-check-person-request', {
+    schema: {
+      description: '测试请求'
+    },
+    schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: true }),
+    handler: async (request, reply) => {
+      const params = _.merge({}, request.body || {}, {timestamp: moment().valueOf()})
+
+      const res = await requestUtil.sendRequest({
+        port: 8001,
+        path: '/api/v1/check-real/person',
+        method: 'post',
+        params: _.merge({}, params, {sign: requestUtil.getSignature(params, 'xtuwmza5jlsb1ky4dg760rhvqp8nce2o')})
       })
+
+      return reply.send(res.body)
     }
   })
 
   fastify.post('/files', {
-    beforeHandler: [ // beforeHandler 函数只支持同步, 否则会出现提前进入 handler 函数的问题.
+    schema: {
+      description: '测试上传文件'
+    },
+    preHandler: [ // preHandler 函数只支持同步, 否则会出现提前进入 handler 函数的问题.
       (request, reply, next) => { // 上传文件.
         upload.fields([
           { name: 'files' },
@@ -99,8 +111,9 @@ export default (fastify, opts, next) => {
 
   fastify.get('/download-files', {
     schema: {
+      description: '测试下载文件',
       querystring: Joi.object({
-        name: Joi.string().optional()
+        filepath: Joi.string().required()
       })
     },
     schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: false }),
@@ -116,6 +129,7 @@ export default (fastify, opts, next) => {
 
   fastify.get('/meetings', {
     schema: {
+      description: '查询会议列表',
       querystring: Joi.object({
         keyText: Joi.string().optional(),
         meeting_member_sid: Joi.string().optional(),
@@ -166,6 +180,7 @@ export default (fastify, opts, next) => {
 
   fastify.get('/categories', {
     schema: {
+      description: '查询通用类别列表',
       querystring: Joi.object({
         keyText: Joi.string().optional(),
         name: Joi.string().optional(),
@@ -175,8 +190,8 @@ export default (fastify, opts, next) => {
       })
     },
     schemaCompiler: schema => data => Joi.validate(data, schema, { allowUnknown: false }),
-    beforeHandler(request, reply, next) {
-      logger.info('into get categories route beforeHandler hook')
+    preHandler(request, reply, next) {
+      logger.info('into get categories route preHandler hook')
 
       next()
     },
@@ -197,6 +212,7 @@ export default (fastify, opts, next) => {
 
   fastify.post('/categories', {
     schema: {
+      description: '新增通用类别',
       body: Joi.object({
         name: Joi.string().required(),
         code: Joi.string().allow('').optional(),
@@ -222,6 +238,7 @@ export default (fastify, opts, next) => {
 
   fastify.patch('/categories/:category_id', {
     schema: {
+      description: '修改单条通用类别',
       params: Joi.object({
         category_id: Joi.number().integer().required()
       }),
@@ -250,6 +267,7 @@ export default (fastify, opts, next) => {
 
   fastify.get('/categories/:category_id', {
     schema: {
+      description: '查询单条通用类别',
       params: Joi.object({
         category_id: Joi.number().integer().required()
       })

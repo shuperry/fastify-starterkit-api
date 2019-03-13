@@ -1,6 +1,6 @@
 export default {
   name: 'fastify-starterkit-api[DEV]',
-  port: 8001,
+  port: 7001,
   log: {
     level: 'debug'
   },

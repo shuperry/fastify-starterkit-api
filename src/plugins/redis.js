@@ -1,8 +1,10 @@
+import fp from 'fastify-plugin'
+
 import Redis from 'ioredis'
 
 import RedisUtil from '../utils/redis-util'
 
-module.exports = (fastify, opts, next) => {
+module.exports = fp((fastify, opts, next) => {
   logger.info('loading redis plugin with opts =', opts)
 
   let client = null,
@@ -18,7 +20,7 @@ module.exports = (fastify, opts, next) => {
   fastify.decorate('redis', redisUtil)
 
   next()
-}
+})
 
 const testRedis = async (fastify) => {
   logger.debug(await fastify.redis.store({keyPrefix: 'case_', key: '1', objVal: {a: 'a', case_id: '1'}}))

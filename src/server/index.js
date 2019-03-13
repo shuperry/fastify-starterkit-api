@@ -24,9 +24,16 @@ const fastify = require('fastify')({
   // }
 })
 
-fastify.addContentTypeParser('multipart/form-data', async (req, next) => {
+fastify.addContentTypeParser('multipart/form-data', async (request, next) => {
   // 添加此步骤会导致表单请求进入两次 preHandler hook 的问题.
   // next()
+})
+
+fastify.setErrorHandler((err, request, reply) => {
+  logger.error(err.stack)
+  reply.status(500).send({
+    error: err.stack
+  })
 })
 
 if (config.get('switches:loadPlugins') !== false) { // 配置了开关为 false 才不加载.

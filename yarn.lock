@@ -13,11 +13,11 @@
   integrity sha1-PgKXJyjGkkjCrwjWCkjLuGgP/98=
 
 "@types/node@*":
-  version "11.9.5"
-  resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-11.9.5.tgz#011eece9d3f839a806b63973e228f85967b79ed3"
-  integrity sha1-AR7s6dP4OagGtjlz4ij4WWe3ntM=
+  version "11.9.6"
+  resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-11.9.6.tgz#c632bbcc780a1349673a6e2e9b9dfa8c369d3c74"
+  integrity sha1-xjK7zHgKE0lnOm4um536jDadPHQ=
 
-"@types/swagger-schema-official@^2.0.13":
+"@types/swagger-schema-official@^2.0.15":
   version "2.0.15"
   resolved "http://registry.npm.taobao.org/@types/swagger-schema-official/download/@types/swagger-schema-official-2.0.15.tgz#5591141e8e3e2e81a4b49c3a3d2321d1367d4ebc"
   integrity sha1-VZEUHo4+LoGktJw6PSMh0TZ9Trw=
@@ -40,7 +40,7 @@ ajax-request@^1.2.0:
     file-system "^2.1.1"
     utils-extend "^1.0.7"
 
-ajv@^6.5.5, ajv@^6.6.0, ajv@^6.8.1:
+ajv@^6.5.5, ajv@^6.8.1, ajv@^6.9.1:
   version "6.9.2"
   resolved "http://registry.npm.taobao.org/ajv/download/ajv-6.9.2.tgz#4927adb83e7f48e5a32b45729744c71ec39c9c7b"
   integrity sha1-SSetuD5/SOWjK0Vyl0THHsOcnHs=
@@ -223,10 +223,10 @@ atob@^2.1.1:
   resolved "http://registry.npm.taobao.org/atob/download/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha1-bZUX654DDSQ2ZmZR6GvZ9vE1M8k=
 
-avvio@^6.0.0:
-  version "6.0.1"
-  resolved "http://registry.npm.taobao.org/avvio/download/avvio-6.0.1.tgz#bafd79c9cfa45a227eaac210093c8bf8cf0e1e75"
-  integrity sha1-uv15yc+kWiJ+qsIQCTyL+M8OHnU=
+avvio@^6.0.1:
+  version "6.1.0"
+  resolved "http://registry.npm.taobao.org/avvio/download/avvio-6.1.0.tgz#790936599a3b7c6218bd86152f28efc19cb33f59"
+  integrity sha1-eQk2WZo7fGIYvYYVLyjvwZyzP1k=
   dependencies:
     debug "^4.0.0"
     fastq "^1.6.0"
@@ -1058,7 +1058,7 @@ boom@^7.3.0:
   dependencies:
     hoek "6.x.x"
 
-bourne@^1.1.0:
+bourne@^1.1.2:
   version "1.1.2"
   resolved "http://registry.npm.taobao.org/bourne/download/bourne-1.1.2.tgz#e290b5bd7166635632eaf8ef12b006b2d4a75b83"
   integrity sha1-4pC1vXFmY1Yy6vjvErAGstSnW4M=
@@ -1945,10 +1945,10 @@ fast-json-stable-stringify@^2.0.0:
   resolved "http://registry.npm.taobao.org/fast-json-stable-stringify/download/fast-json-stable-stringify-2.0.0.tgz#d5142c0caee6b1189f87d3a76111064f86c8bbf2"
   integrity sha1-1RQsDK7msRifh9OnYREGT4bIu/I=
 
-fast-json-stringify@^1.9.1:
-  version "1.11.0"
-  resolved "http://registry.npm.taobao.org/fast-json-stringify/download/fast-json-stringify-1.11.0.tgz#de7f5147e044b937bc5748b913140efc47c162b7"
-  integrity sha1-3n9RR+BEuTe8V0i5ExQO/EfBYrc=
+fast-json-stringify@^1.11.0:
+  version "1.11.1"
+  resolved "http://registry.npm.taobao.org/fast-json-stringify/download/fast-json-stringify-1.11.1.tgz#bd7e564685c93c22a36b0cd1004fab399c193644"
+  integrity sha1-vX5WRoXJPCKjawzRAE+rOZwZNkQ=
   dependencies:
     ajv "^6.8.1"
     deepmerge "^3.0.0"
@@ -2006,7 +2006,7 @@ fastify-plugin@^0.1.1:
   dependencies:
     semver "^5.3.0"
 
-fastify-plugin@^1.0.0, fastify-plugin@^1.3.0, fastify-plugin@^1.4.0:
+fastify-plugin@^1.0.0, fastify-plugin@^1.3.0, fastify-plugin@^1.5.0:
   version "1.5.0"
   resolved "http://registry.npm.taobao.org/fastify-plugin/download/fastify-plugin-1.5.0.tgz#4bea12c54112f4749c17f3a1f17356cbdfa661af"
   integrity sha1-S+oSxUES9HScF/Oh8XNWy9+mYa8=
@@ -2020,42 +2020,42 @@ fastify-response-time@^1.1.0:
   dependencies:
     fastify-plugin "^1.3.0"
 
-fastify-static@^2.1.0, fastify-static@^2.3.3:
-  version "2.3.3"
-  resolved "http://registry.npm.taobao.org/fastify-static/download/fastify-static-2.3.3.tgz#388a1ddf333b02288df1f21062701b1357ba75e4"
-  integrity sha1-OIod3zM7AiiN8fIQYnAbE1e6deQ=
+fastify-static@^2.3.3, fastify-static@^2.3.4:
+  version "2.3.4"
+  resolved "http://registry.npm.taobao.org/fastify-static/download/fastify-static-2.3.4.tgz#722c4f8a8b5156f894b636603f57cc9db60d96fe"
+  integrity sha1-cixPiotRVviUtjZgP1fMnbYNlv4=
   dependencies:
-    fastify-plugin "^1.4.0"
+    fastify-plugin "^1.5.0"
     glob "^7.1.3"
     readable-stream "^3.1.1"
     send "^0.16.0"
 
 fastify-swagger@^2.3.0:
-  version "2.3.0"
-  resolved "http://registry.npm.taobao.org/fastify-swagger/download/fastify-swagger-2.3.0.tgz#c2fc3439da98525c5ba2bf25d825fa33c4979510"
-  integrity sha1-wvw0OdqYUlxbor8l2CX6M8SXlRA=
+  version "2.3.1"
+  resolved "http://registry.npm.taobao.org/fastify-swagger/download/fastify-swagger-2.3.1.tgz#10aa8069a09ea9f9924ef00dc5521388423e1e54"
+  integrity sha1-EKqAaaCeqfmSTvANxVITiEI+HlQ=
   dependencies:
-    "@types/swagger-schema-official" "^2.0.13"
-    fastify-plugin "^1.4.0"
-    fastify-static "^2.1.0"
+    "@types/swagger-schema-official" "^2.0.15"
+    fastify-plugin "^1.5.0"
+    fastify-static "^2.3.4"
     js-yaml "^3.12.1"
 
 fastify@^2.0.0-rc.6:
-  version "2.0.0-rc.6"
-  resolved "http://registry.npm.taobao.org/fastify/download/fastify-2.0.0-rc.6.tgz#48fc6ebddcaa8c3aea1026bc851dfdf72ebe8d48"
-  integrity sha1-SPxuvdyqjDrqECa8hR399y6+jUg=
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/fastify/download/fastify-2.0.0.tgz#5f4c58671d2b71c474ab66efd9de65fb32d835b5"
+  integrity sha1-X0xYZx0rccR0q2bv2d5l+zLYNbU=
   dependencies:
     abstract-logging "^1.0.0"
-    ajv "^6.6.0"
-    avvio "^6.0.0"
-    bourne "^1.1.0"
-    fast-json-stringify "^1.9.1"
-    find-my-way "^1.18.0"
-    flatstr "^1.0.8"
-    light-my-request "^3.0.0"
-    middie "^4.0.0"
-    pino "^5.0.0"
-    proxy-addr "^2.0.3"
+    ajv "^6.9.1"
+    avvio "^6.0.1"
+    bourne "^1.1.2"
+    fast-json-stringify "^1.11.0"
+    find-my-way "^2.0.0"
+    flatstr "^1.0.9"
+    light-my-request "^3.2.0"
+    middie "^4.0.1"
+    pino "^5.11.1"
+    proxy-addr "^2.0.4"
     readable-stream "^3.1.1"
     tiny-lru "^6.0.1"
 
@@ -2165,16 +2165,16 @@ fill-range@^4.0.0:
     repeat-string "^1.6.1"
     to-regex-range "^2.1.0"
 
-find-my-way@^1.18.0:
-  version "1.18.1"
-  resolved "http://registry.npm.taobao.org/find-my-way/download/find-my-way-1.18.1.tgz#5db605eab7211ee6af7ab08eb4f568060aa8e9f6"
-  integrity sha1-XbYF6rchHuaverCOtPVoBgqo6fY=
+find-my-way@^2.0.0:
+  version "2.0.1"
+  resolved "http://registry.npm.taobao.org/find-my-way/download/find-my-way-2.0.1.tgz#965aa7cacac2362d47d5d7ce219f51bf76216af7"
+  integrity sha1-llqnysrCNi1H1dfOIZ9Rv3Yhavc=
   dependencies:
     fast-decode-uri-component "^1.0.0"
-    safe-regex "^1.1.0"
+    safe-regex2 "^2.0.0"
     semver-store "^0.3.0"
 
-flatstr@^1.0.8, flatstr@^1.0.9:
+flatstr@^1.0.9:
   version "1.0.9"
   resolved "http://registry.npm.taobao.org/flatstr/download/flatstr-1.0.9.tgz#0950d56fec02de1030c1311847ecd58c25690eb9"
   integrity sha1-CVDVb+wC3hAwwTEYR+zVjCVpDrk=
@@ -2311,10 +2311,10 @@ generate-function@^2.3.1:
   dependencies:
     is-property "^1.0.2"
 
-generic-pool@^3.4.0:
-  version "3.6.1"
-  resolved "http://registry.npm.taobao.org/generic-pool/download/generic-pool-3.6.1.tgz#a51a8439ee86f0bbcf100fc1db3f45c86289deb4"
-  integrity sha1-pRqEOe6G8LvPEA/B2z9FyGKJ3rQ=
+generic-pool@3.5.0:
+  version "3.5.0"
+  resolved "http://registry.npm.taobao.org/generic-pool/download/generic-pool-3.5.0.tgz#acac4fd743a175ff20574f380910036464cb61f7"
+  integrity sha1-rKxP10Ohdf8gV084CRADZGTLYfc=
 
 get-proxy@^2.0.0:
   version "2.1.0"
@@ -2944,9 +2944,9 @@ js-tokens@^3.0.2:
   integrity sha1-mGbfOVECEw449/mWvOtlRDIJwls=
 
 js-yaml@^3.12.1:
-  version "3.12.1"
-  resolved "http://registry.npm.taobao.org/js-yaml/download/js-yaml-3.12.1.tgz#295c8632a18a23e054cf5c9d3cecafe678167600"
-  integrity sha1-KVyGMqGKI+BUz1ydPOyv5ngWdgA=
+  version "3.12.2"
+  resolved "http://registry.npm.taobao.org/js-yaml/download/js-yaml-3.12.2.tgz#ef1d067c5a9d9cb65bd72f285b5d8105c77f14fc"
+  integrity sha1-7x0GfFqdnLZb1y8oW12BBcd/FPw=
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
@@ -3091,7 +3091,7 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
-light-my-request@^3.0.0:
+light-my-request@^3.2.0:
   version "3.2.0"
   resolved "http://registry.npm.taobao.org/light-my-request/download/light-my-request-3.2.0.tgz#2ecf45008b7a7112a4aee0542f0a69b7a5fa35c0"
   integrity sha1-Ls9FAIt6cRKkruBULwppt6X6NcA=
@@ -3302,7 +3302,7 @@ micromatch@^3.1.10:
     snapdragon "^0.8.1"
     to-regex "^3.0.2"
 
-middie@^4.0.0:
+middie@^4.0.1:
   version "4.0.1"
   resolved "http://registry.npm.taobao.org/middie/download/middie-4.0.1.tgz#24b4333034926ebd7831ed58766d050c1ce6300a"
   integrity sha1-JLQzMDSSbr14Me1Ydm0FDBzmMAo=
@@ -3778,9 +3778,9 @@ p-timeout@^2.0.1:
     p-finally "^1.0.0"
 
 pako@~1.0.2:
-  version "1.0.8"
-  resolved "http://registry.npm.taobao.org/pako/download/pako-1.0.8.tgz#6844890aab9c635af868ad5fecc62e8acbba3ea4"
-  integrity sha1-aESJCqucY1r4aK1f7MYuisu6PqQ=
+  version "1.0.10"
+  resolved "http://registry.npm.taobao.org/pako/download/pako-1.0.10.tgz#4328badb5086a426aa90f541977d4955da5c9732"
+  integrity sha1-Qyi621CGpCaqkPVBl31JVdpclzI=
 
 param-case@^2.1.0:
   version "2.1.1"
@@ -3875,7 +3875,7 @@ pino-std-serializers@^2.3.0:
   resolved "http://registry.npm.taobao.org/pino-std-serializers/download/pino-std-serializers-2.3.0.tgz#34eeaab97c055c28e22c0542ae55978e7e427786"
   integrity sha1-NO6quXwFXCjiLAVCrlWXjn5Cd4Y=
 
-pino@^5.0.0, pino@^5.11.1:
+pino@^5.11.1:
   version "5.11.1"
   resolved "http://registry.npm.taobao.org/pino/download/pino-5.11.1.tgz#2d6d8edb7ebc7c354be03bfa04fd436352e1d67b"
   integrity sha1-LW2O2368fDVL4Dv6BP1DY1Lh1ns=
@@ -3922,7 +3922,7 @@ proto-list@~1.2.1:
   resolved "http://registry.npm.taobao.org/proto-list/download/proto-list-1.2.4.tgz#212d5bfe1318306a420f6402b8e26ff39647a849"
   integrity sha1-IS1b/hMYMGpCD2QCuOJv85ZHqEk=
 
-proxy-addr@^2.0.3:
+proxy-addr@^2.0.4:
   version "2.0.4"
   resolved "http://registry.npm.taobao.org/proxy-addr/download/proxy-addr-2.0.4.tgz#ecfc733bf22ff8c6f407fa275327b9ab67e48b93"
   integrity sha1-7PxzO/Iv+Mb0B/onUye5q2fki5M=
@@ -4070,9 +4070,9 @@ readable-stream@^2.0.0, readable-stream@^2.0.2, readable-stream@^2.0.5, readable
     util-deprecate "~1.0.1"
 
 readable-stream@^3.1.1:
-  version "3.1.1"
-  resolved "http://registry.npm.taobao.org/readable-stream/download/readable-stream-3.1.1.tgz#ed6bbc6c5ba58b090039ff18ce670515795aeb06"
-  integrity sha1-7Wu8bFuliwkAOf8YzmcFFXla6wY=
+  version "3.2.0"
+  resolved "http://registry.npm.taobao.org/readable-stream/download/readable-stream-3.2.0.tgz#de17f229864c120a9f56945756e4f32c4045245d"
+  integrity sha1-3hfyKYZMEgqfVpRXVuTzLEBFJF0=
   dependencies:
     inherits "^2.0.3"
     string_decoder "^1.1.1"
@@ -4275,6 +4275,11 @@ ret@~0.1.10:
   resolved "http://registry.npm.taobao.org/ret/download/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
   integrity sha1-uKSCXVvbH8P29Twrwz+BOIaBx7w=
 
+ret@~0.2.0:
+  version "0.2.2"
+  resolved "http://registry.npm.taobao.org/ret/download/ret-0.2.2.tgz#b6861782a1f4762dce43402a71eb7a283f44573c"
+  integrity sha1-toYXgqH0di3OQ0Aqcet6KD9EVzw=
+
 retry-as-promised@^2.3.2:
   version "2.3.2"
   resolved "http://registry.npm.taobao.org/retry-as-promised/download/retry-as-promised-2.3.2.tgz#cd974ee4fd9b5fe03cbf31871ee48221c07737b7"
@@ -4304,6 +4309,13 @@ safe-buffer@~5.0.1:
   version "5.0.1"
   resolved "http://registry.npm.taobao.org/safe-buffer/download/safe-buffer-5.0.1.tgz#d263ca54696cd8a306b5ca6551e92de57918fbe7"
   integrity sha1-0mPKVGls2KMGtcplUekt5XkY++c=
+
+safe-regex2@^2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/safe-regex2/download/safe-regex2-2.0.0.tgz#b287524c397c7a2994470367e0185e1916b1f5b9"
+  integrity sha1-sodSTDl8eimURwNn4BheGRax9bk=
+  dependencies:
+    ret "~0.2.0"
 
 safe-regex@^1.1.0:
   version "1.1.0"
@@ -4392,16 +4404,16 @@ sequelize-hierarchy@^1.3.2:
     semver-select "^1.1.0"
 
 sequelize@^4.42.0:
-  version "4.42.0"
-  resolved "http://registry.npm.taobao.org/sequelize/download/sequelize-4.42.0.tgz#439467ba7bfe7d5afcc56d62b3e091860fbf18f3"
-  integrity sha1-Q5Rnunv+fVr8xW1is+CRhg+/GPM=
+  version "4.42.1"
+  resolved "http://registry.npm.taobao.org/sequelize/download/sequelize-4.42.1.tgz#352eeb632dffd52db82446378bd57997a6f9fd35"
+  integrity sha1-NS7rYy3/1S24JEY3i9V5l6b5/TU=
   dependencies:
     bluebird "^3.5.0"
     cls-bluebird "^2.1.0"
     debug "^3.1.0"
     depd "^1.1.0"
     dottie "^2.0.0"
-    generic-pool "^3.4.0"
+    generic-pool "3.5.0"
     inflection "1.12.0"
     lodash "^4.17.1"
     moment "^2.20.0"

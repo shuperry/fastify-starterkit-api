@@ -2,6 +2,7 @@ import path from 'path'
 
 import _ from 'lodash'
 import cls from 'continuation-local-storage'
+import fp from 'fastify-plugin'
 import fsPlus from 'fs-plus'
 import hierachy from 'sequelize-hierarchy'
 
@@ -48,7 +49,7 @@ const operatorsAliases = {
   $col: Op.col
 }
 
-module.exports = async (fastify, opts, next) => {
+module.exports = fp(async (fastify, opts, next) => {
   logger.info('loading sequelize plugin with opts =', opts)
 
   const sequelize = new Sequelize(opts.database, opts.username, opts.password, _.extend(opts.options, {operatorsAliases}))
@@ -80,4 +81,4 @@ module.exports = async (fastify, opts, next) => {
   global.sequelize = sequelize
 
   next()
-}
+})
