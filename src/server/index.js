@@ -1,6 +1,10 @@
+import fs from 'fs'
+
 import _ from 'lodash'
 import ip from 'ip'
 import base64Img from 'base64-img'
+import xlsx from 'node-xlsx'
+import S from 'string'
 
 import loadMiddlewares from './load-middlewares'
 import loadHooks from './load-hooks'
@@ -59,6 +63,49 @@ fastify.listen(port, '0.0.0.0', async (err) => {
     logger.error(err)
     return
   }
+
+  const xlsdata = xlsx.parse(`/Users/shupeipei/Downloads/c6c4babfceff5594.xlsx`)
+  // logger.info('excel data =', xlsdata)
+
+  let buildData = [], buildRowData = [], rowData = [], rowStr = ''
+  _.each(xlsdata[0]['data'], (v, i) => {
+    if (i > 0) {
+      logger.info('v =', _.toString(v).split(','))
+
+      rowData = _.toString(v).split(',')
+
+      buildRowData = []
+      buildRowData.push(rowData[1]) // 姓名
+      buildRowData.push(rowData[2]) // 电话号码
+      buildRowData.push(rowData[3]) // 省
+      buildRowData.push(rowData[4]) // 市
+      buildRowData.push(rowData[5]) // 区
+
+      // 详细地址
+      rowStr = S(rowData[6])
+        .replaceAll(' ', '')
+        .replaceAll('深圳市', '')
+        .replaceAll('深圳市南山区', '')
+        .replaceAll('深圳南山区', '')
+        .replaceAll('南山区', '')
+        .replaceAll('深圳市福田区', '')
+        .replaceAll('福田区', '')
+        .s
+      if (rowStr.indexOf('/') > -1) {
+        buildRowData.push(
+          S(rowStr).substr(0, rowStr.indexOf('/')).s
+        )
+      } else {
+        buildRowData.push(S(rowStr).s)
+      }
+
+      buildRowData.push(`购买平台：${rowData[9]}, 商品：${rowData[8]}`)
+
+      buildData.push(buildRowData)
+    }
+  })
+
+  fs.writeFileSync('/Users/shupeipei/Downloads/test1.xlsx', xlsx.build([{name: "mySheetName", data: buildData}]), {'flag': 'w'})
 
   // const newImgBse64Str = await base64Img.base64Sync('/Users/shupeipei/Desktop/me.jpeg')
   // logger.info('imgBse64Str new icon = ', newImgBse64Str)
